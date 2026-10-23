@@ -38,7 +38,7 @@ The organ-sealed snapshot of this experiment, `lra-runner-20261023b.tar.gz` (sha
 - `rttp://71c4e2a8.conformance.iqa` — the question (WHERE + WHEN), intent side. intent = first 8 hex of the artifact digest (the intent field is 8 lowercase hex by grammar); pillar and root are operator-chosen labels.
 - `iqa://71c4e2a875cfdda1c0f31a1cc8b44bb1.forge.iqa` — the answer (WHETHER), attestation side. subject = first 32 hex of the same digest; organ `forge` (closed set). This is the exact subject the organ seal attests; the organ answers live at [organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1](https://iqa.org/organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1).
 
-Note: this section postdates the seal (a digest cannot be carried in the bytes it hashes), so re-archiving from HEAD yields a different digest — the sealed bytes remain the archive of record.
+Note: this section postdates the seal of the artifact it describes (a digest cannot be carried in the bytes it hashes, so the sealed copy carries the pointer without the digest), and re-archiving from HEAD yields a different digest — the sealed bytes remain the archive of record.
 
 ## License & credits
 
