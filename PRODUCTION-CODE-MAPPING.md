@@ -2,7 +2,7 @@
 
 **What this is.** A mapping from the `lease-revocation-axes` family's decision fields to the production surface we publish today. This is not a run report and must not be read as one: no vectors were scored here. It is the honest answer to "what would an author-code run over these vectors look like" — and the reason we are not publishing one.
 
-**What was checked (2026-10-23).** A fresh install of [`rttp` 1.3.1 from PyPI](https://pypi.org/project/rttp/) into a clean virtual environment; its self-test passes 80 checks, 3 skipped (measured on the install day, not quoted from memory).
+**What was checked (2026-10-23).** A fresh install of [`rttp` 1.3.1 from PyPI](https://pypi.org/project/rttp/) into a clean virtual environment; its self-test passes 80 checks with 3 skipped on a default install (the Ed25519 vector checks), and the full 83/83 with the optional Ed25519 backend — both matching the numbers published in the package description.
 
 **Why the vectors admit no code-level run at revision 2.** The frozen vectors are deliberately crypto-free: timelines contain only `call` / `revoke` / `availability` events, evidence is an abstract record (`issued_at_ms`, `expires_at_ms`, `status`, `allowed_operations`), and there are no keys, signatures, or URIs anywhere in the bytes. They exercise the **policy layer** (lease arithmetic, revocation propagation, current-observation semantics). Our published packages ship the **addressing and crypto layer**. An adapter that fed these vectors to production code would therefore have to reimplement the entire verifier policy itself and let production functions rubber-stamp it — which is exactly the circularity an author-code run must not commit. So we publish this mapping instead.
 
