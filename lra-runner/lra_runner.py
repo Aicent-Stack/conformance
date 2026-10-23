@@ -15,6 +15,10 @@ Usage:
   python lra_runner.py                       # human summary
   python lra_runner.py --json                # full JSON report
   python lra_runner.py --vectors <path>      # alternate vectors file
+
+Exit status: 0 when the run status is independent_run_matched, 1 otherwise
+(including digest-gate refusal). Callers must not have to parse stdout to
+learn whether the run matched.
 """
 
 import argparse
@@ -30,6 +34,34 @@ DEFAULT_POLICY = "P1-current-observation"
 DIAGNOSTIC_CASES = ("LRA-04", "LRA-05", "LRA-07", "LRA-08", "LRA-10")
 MODES = ("cached_lease", "live_standing_read")
 BOUNDARIES = ("exclusive", "inclusive")
+
+# --- oracle-inputs guard (reporting check "oracle_inputs_not_read") ---------------
+# While the scoring phases run (baselines, mutations, diagnostics), builtins.open
+# is wrapped so that any attempt to open a file whose name contains "oracle" is
+# recorded. The reporting check is then the measured result of the run, not an
+# asserted constant: an implementation that peeks at oracle inputs during
+# scoring flips the check to False.
+_ORACLE_GUARD = {"active": False, "touched": False}
+_real_open = open
+
+
+def _guarded_open(file, *args, **kwargs):
+    if _ORACLE_GUARD["active"] and "oracle" in str(file).lower():
+        _ORACLE_GUARD["touched"] = True
+    return _real_open(file, *args, **kwargs)
+
+
+def _oracle_guard_on():
+    _ORACLE_GUARD["active"] = True
+    _ORACLE_GUARD["touched"] = False
+
+
+def _oracle_guard_off():
+    _ORACLE_GUARD["active"] = False
+
+
+import builtins as _builtins
+_builtins.open = _guarded_open
 
 
 class HostileField:
@@ -506,7 +538,8 @@ def main():
     total_calls = sum(1 for c in vectors["cases"] for e in c["timeline"] if e["event"] == "call")
     assert total_calls == 44, "frozen call inventory changed"
 
-    # --- baseline runs: 4 profiles x 12 cases ---
+    # --- baseline runs: 4 profiles x 12 cases (scoring begins: oracle guard on) ---
+    _oracle_guard_on()
     baselines = []
     for mode in MODES:
         for boundary in BOUNDARIES:
@@ -550,7 +583,20 @@ def main():
                     r = run_case(vectors, case, mode, boundary, mutant="post-expiry-diagnostic")
                     diagnostic_runs.append(r)
 
+    # --- reporting checks (declaration semantics; still under the oracle guard) ---
+    none_run = run_case(vectors, vectors["cases"][0], "cached_lease", "exclusive", claimed=[])
+    statement_run = run_case(vectors, vectors["cases"][1], "cached_lease", "exclusive",
+                             claimed=["evidence_freshness", "authority_validity"])
+    unmapped_run = run_case(vectors, vectors["cases"][0], "cached_lease", "exclusive",
+                            policy="different-policy")
+    action_only = run_case(vectors, vectors["cases"][0], "cached_lease", "exclusive",
+                           claimed=["action_authorization"], policy="different-policy")
+    oracle_inputs_not_read = not _ORACLE_GUARD["touched"]
+
     # --- oracle checkpoints (hand-reasoned table; frozen sibling of canonical vectors) ---
+    # all scoring is complete at this point: turn the oracle guard off, then read
+    # the oracle file for the separate checkpoint-comparison section only.
+    _oracle_guard_off()
     candidate_oracle = path.replace("vectors.json", "oracle-checkpoints.json")
     if candidate_oracle != path and os.path.exists(candidate_oracle):
         oracle_path = candidate_oracle
@@ -577,20 +623,12 @@ def main():
         if rec["downstream_reached"] != row["downstream_reached"]:
             oracle_failures.append("%s downstream" % row["call"])
 
-    # --- reporting checks (declaration semantics) ---
-    none_run = run_case(vectors, vectors["cases"][0], "cached_lease", "exclusive", claimed=[])
-    statement_run = run_case(vectors, vectors["cases"][1], "cached_lease", "exclusive",
-                             claimed=["evidence_freshness", "authority_validity"])
-    unmapped_run = run_case(vectors, vectors["cases"][0], "cached_lease", "exclusive",
-                            policy="different-policy")
-    action_only = run_case(vectors, vectors["cases"][0], "cached_lease", "exclusive",
-                           claimed=["action_authorization"], policy="different-policy")
     reporting_checks = {
         "no_scored_coverage": none_run["status"] == "no_scored_coverage" and none_run["scored"] == 0,
         "statement_only_matched": statement_run["status"] == "matched" and statement_run["not_claimed"] > 0,
         "policy_mismatch_partial": unmapped_run["status"] == "partial_coverage" and unmapped_run["not_supported"] > 0,
         "unsupported_only_no_coverage": action_only["status"] == "no_scored_coverage" and action_only["scored"] == 0,
-        "oracle_inputs_not_read": True,
+        "oracle_inputs_not_read": oracle_inputs_not_read,
     }
 
     # (digest gate is enforced hard at load time, before any scoring)
@@ -643,6 +681,8 @@ def main():
               % (result["oracle_checkpoints"], oracle_failures or "none"))
         print("reporting checks: %s" % reporting_checks)
         print("RESULT: %s" % result["status"])
+
+    sys.exit(0 if result["status"] == "independent_run_matched" else 1)
 
 
 if __name__ == "__main__":
