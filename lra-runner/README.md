@@ -31,6 +31,15 @@ The frozen inputs are vendored under `vendor/` (copied verbatim from the lab's P
 
 `lra_runner.py` — the runner · `vendor/vectors.json` + `vendor/SHA256SUMS.txt` + `vendor/oracle-checkpoints.json` — frozen lab inputs, verbatim · `RUN-REPORT-2026-10-23.md` — full run report · `run-output.json` — machine-readable result of the 2026-10-23 run.
 
+## One artifact, two addresses
+
+The organ-sealed snapshot of this experiment, `lra-runner-20261023.tar.gz` (sha256 `70e812f78fd02fde063c83d52a89ceea782ecc8213e2096b81d9ddd58879303d`, pinned on the archive of record at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/)), carries two addresses — both derived from the artifact's own digest, one per sister scheme, nothing invented, nothing registered:
+
+- `rttp://70e812f7.conformance.iqa` — the question (WHERE + WHEN), intent side. intent = first 8 hex of the artifact digest (the intent field is 8 lowercase hex by grammar); pillar and root are operator-chosen labels.
+- `iqa://70e812f78fd02fde063c83d52a89ceea.forge.iqa` — the answer (WHETHER), attestation side. subject = first 32 hex of the same digest; organ `forge` (closed set). This is the exact subject the organ seal attests; the organ answers live at [organ-api/v1/production?subject=70e812f78fd02fde063c83d52a89ceea](https://iqa.org/organ-api/v1/production?subject=70e812f78fd02fde063c83d52a89ceea).
+
+Note: the sealed tarball is a pinned snapshot; this section and the report addendum postdate the seal, so re-archiving from HEAD yields a different digest — the sealed bytes remain the archive of record.
+
 ## License & credits
 
 This repository: Apache-2.0. The vectors, oracle checkpoints and SHA256SUMS manifest under `vendor/` are by the Agent Authority Conformance lab (PR #180), Apache-2.0, vendored verbatim with digest verification; the runner implementation is by the RTTP & IQA side (Aicent Stack).

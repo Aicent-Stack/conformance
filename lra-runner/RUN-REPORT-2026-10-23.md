@@ -171,3 +171,8 @@ oracle checkpoints: 12 (failures: none)
 reporting checks: {'no_scored_coverage': True, 'statement_only_matched': True, 'policy_mismatch_partial': True, 'unsupported_only_no_coverage': True, 'oracle_inputs_not_read': True}
 RESULT: independent_run_matched
 ```
+
+## Archive pin and addresses (added 2026-10-23, post-publication)
+
+The complete artifact is pinned and organ-sealed on the archive of record: `lra-runner-20261023.tar.gz`, sha256 `70e812f78fd02fde063c83d52a89ceea782ecc8213e2096b81d9ddd58879303d`, at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/). The artifact carries two addresses derived from its own digest — one per sister scheme: `rttp://70e812f7.conformance.iqa` (the question, WHERE+WHEN; intent = first 8 hex) and `iqa://70e812f78fd02fde063c83d52a89ceea.forge.iqa` (the answer, WHETHER; subject = first 32 hex — the exact organ-sealed subject, live at [organ-api/v1/production?subject=70e812f78fd02fde063c83d52a89ceea](https://iqa.org/organ-api/v1/production?subject=70e812f78fd02fde063c83d52a89ceea)). This section postdates the run and the seal; the code-as-run pin above is unchanged.
+
