@@ -67,14 +67,6 @@ python lra_runner.py            # human summary
 python lra_runner.py --json     # full machine-readable report
 ```
 
-## Mapping to the 0015 commitments (W3C wall, post 0015)
-
-- Dual-mode scoring: done (cached lease vs live standing read, separately scored above)
-- Conformance vectors contribution: this run is the recompute-under-independent-implementation layer of the work queue (OPEN-RUNS.md); frozen-vector comparison only
-- Written participation in #177: pending, will reference this report
-- Action-time authorization not claimed: declared and machine-checked via the reporting-semantics suite
-
-
 ## Report metadata (per docs/RUN-REPORT.md required fields)
 
 | field | value |
@@ -172,7 +164,7 @@ reporting checks: {'no_scored_coverage': True, 'statement_only_matched': True, '
 RESULT: independent_run_matched
 ```
 
-## Archive pin and addresses (added 2026-10-23, post-publication)
+## Archive of record
 
-The complete artifact is pinned and organ-sealed on the archive of record: `lra-runner-20261023.tar.gz`, sha256 `70e812f78fd02fde063c83d52a89ceea782ecc8213e2096b81d9ddd58879303d`, at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/). The artifact carries two addresses derived from its own digest — one per sister scheme: `rttp://70e812f7.conformance.iqa` (the question, WHERE+WHEN; intent = first 8 hex) and `iqa://70e812f78fd02fde063c83d52a89ceea.forge.iqa` (the answer, WHETHER; subject = first 32 hex — the exact organ-sealed subject, live at [organ-api/v1/production?subject=70e812f78fd02fde063c83d52a89ceea](https://iqa.org/organ-api/v1/production?subject=70e812f78fd02fde063c83d52a89ceea)). This section postdates the run and the seal; the code-as-run pin above is unchanged.
+The complete artifact (code, frozen inputs, run report, recorded output) is pinned and organ-sealed on the archive of record at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/), where the artifact's digest and its two scheme addresses — `rttp://` (intent side) and `iqa://` (attestation side), both derived from the artifact's own SHA-256 digest — are published alongside the seal.
 
