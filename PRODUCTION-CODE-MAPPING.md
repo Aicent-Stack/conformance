@@ -10,7 +10,7 @@
 
 | family decision field | closest production primitive (rttp 1.3.1) | coverage today |
 |---|---|---|
-| `evidence_binding` | `seal.sign` / `seal.verify` — HMAC over canonical bytes; `aid.derive_from_entropy` — subject derivation; `rttp_uri.parse` / `parse_and_derive` / `derive_route_shard` — address well-formedness | **partial.** Integrity and subject-identity layers exist and are vector-tested (80/80 scoreable self-test checks), but the family vectors carry no signed material, so there is nothing to feed them. |
+| `evidence_binding` | `seal.sign` / `seal.verify` — HMAC over canonical bytes; `aid.derive_from_entropy` — subject derivation; `rttp_uri.parse` / `parse_and_derive` / `derive_route_shard` — address well-formedness | **partial.** Integrity and subject-identity layers exist and are vector-tested (within the package's 83-check self-test), but the family vectors carry no signed material, so there is nothing to feed them. |
 | `evidence_freshness` | `seal.verify` — the timestamp is inside the signature, with a clock-skew tolerance | **mechanism exists, policy does not.** Signed time is a production fact; the 120 s lease-TTL check from `issued_at_ms` is integrator-side today. A production lease primitive is on our roadmap. |
 | `authority_answer` / `current_validity` / `observation` | none in `rttp` (standing/lease semantics are IQA-side; `iqa-mcp` AE-128 envelopes carry a lease but ship no standing registry) | **not in package.** |
 | `action_decision` / `downstream_reached` | none in `rttp` (policy layer, integrator-side by design) | **not in package.** |
