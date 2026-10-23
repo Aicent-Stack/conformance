@@ -83,7 +83,7 @@ python lra_runner.py --json     # full machine-readable report
 | date | 2026-10-23 |
 | run mode | B — alternate recomputation |
 | implementation name | `lra_runner.py` (RTTP & IQA independent Python runner) |
-| implementation repo and commit | https://github.com/Aicent-Stack/conformance @ `a3e820cf038e15e5c85b0a1772f41ee018710355` |
+| implementation repo and commit | https://github.com/Aicent-Stack/conformance — `lra-runner/` @ `a3e820cf038e15e5c85b0a1772f41ee018710355` (code as run; byte-identical through the monorepo restructure) |
 | corpus reference | aps-conformance-suite PR #180, commit `b745d252191e89fe123e33411f124a1b67542c2a` |
 | per-vector result | table below (48/48 matched) |
 | verbatim command and output | below, uncut |
