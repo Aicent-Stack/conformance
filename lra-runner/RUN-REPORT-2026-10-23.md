@@ -1,6 +1,6 @@
 # Conformance Run Report — lease-revocation-axes (revision 2, candidate)
 
-**Runner** RTTP & IQA independent Python runner (`rttp-iqa-runner/lra_runner.py`) · **Date** 2026-10-23 · **Status** `independent_run_matched`
+**Runner** RTTP & IQA independent Python runner (`rttp-iqa-runner/lra_runner.py`) · **Date** 2026-10-23 · **Status** `independent_run_matched` · **Cut** rev c (reporting fixes after independent reproduction review, see Revision history)
 
 **Frozen input** `fixtures/lease-revocation-axes/revision-2/vectors.json` · sha256 `a0a07ea58bcacfd056cbd648e03de4ff14778aa151e8b5d2574e43e31a111ed8` · digest gate vs pinned `SHA256SUMS.txt`: OK (hard gate — runner refuses to score any vectors whose digest is not pinned)
 
@@ -47,7 +47,11 @@ Hand-reasoned checkpoint table (frozen alongside vectors) replayed against runne
 
 ## Reporting semantics — 5/5
 
-`no_scored_coverage` · `statement_only_matched` · `policy_mismatch_partial` · `unsupported_only_no_coverage` · `oracle_inputs_not_read` — all true.
+`no_scored_coverage` · `statement_only_matched` · `policy_mismatch_partial` · `unsupported_only_no_coverage` · `oracle_inputs_not_read` — all true, and since rev c **executed, not asserted**: during all scoring phases (baselines, mutations, diagnostics, declaration-check runs) the runner wraps `open()` and records any attempt to read a file whose name contains `oracle`; the check is the measured result of that guard. A deliberately peeking implementation flips it to False (demonstrated once outside the battery; the mutation battery remains 12 named mutants so the declared failure sets stay frozen).
+
+## Exit status (since rev c)
+
+The process exit code is `0` only when the run status is `independent_run_matched`, and `1` otherwise — including digest-gate refusal and `independent_run_diverged`. Callers no longer need to parse stdout to learn whether the run matched.
 
 ## Negative-path self-check
 
@@ -63,7 +67,7 @@ Full run cost: **~0.2 s wall-clock** (measured 2026-10-23, including interpreter
 
 ```
 cd rttp-iqa-runner
-python lra_runner.py            # human summary
+python lra_runner.py            # human summary (exit status 0 on matched, 1 otherwise)
 python lra_runner.py --json     # full machine-readable report
 ```
 
@@ -75,13 +79,19 @@ python lra_runner.py --json     # full machine-readable report
 | date | 2026-10-23 |
 | run mode | B — alternate recomputation |
 | implementation name | `lra_runner.py` (RTTP & IQA independent Python runner) |
-| implementation repo and commit | https://github.com/Aicent-Stack/conformance — `lra-runner/` @ `a3e820cf038e15e5c85b0a1772f41ee018710355` (code as run; byte-identical through the monorepo restructure) |
+| implementation repo and commit | https://github.com/Aicent-Stack/conformance — `lra-runner/` @ `8cb2e241419cd03d9be40c5977e0e9caa1d723a4` (code as run, rev c; earlier cuts pinned `a3e820cf038e15e5c85b0a1772f41ee018710355`) |
 | corpus reference | aps-conformance-suite PR #180, commit `b745d252191e89fe123e33411f124a1b67542c2a` |
 | per-vector result | table below (48/48 matched) |
 | verbatim command and output | below, uncut |
 | environment | Python 3.14.2, Windows 11 (10.0.26300) |
-| author-produced or independent | **independent** (see PROVENANCE.md Independence) |
+| author-produced or independent | **Mode B — author-produced** under the lab's rules (independent *implementation* — no lab code — but run by its author; third-party reproductions are the independent records) |
 | suspected defective vectors | none observed |
+
+## Revision history (append-only narrative)
+
+- **rev a** (2026-10-23): first cut; sealed, superseded same day.
+- **rev b** (2026-10-23): removed the thread-mapping section — a technical artifact carries the measurement; thread politics belong in the accompanying comment. Sealed; rev a kept as sealed history.
+- **rev c** (2026-10-23): two reporting fixes after the independent reproduction review (@aeoess, PR #180 comment): (1) process exit status now reflects the run status (0 = matched, 1 = diverged or digest-gate refusal); (2) `oracle_inputs_not_read` changed from an asserted constant to an executed runtime guard over all scoring phases. No scoring logic, vectors, or result numbers changed — the report above is byte-for-byte the same measurement. Sealed; rev a and rev b kept as sealed history.
 
 ## Per-vector results (Mode B)
 
