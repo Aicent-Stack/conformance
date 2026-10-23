@@ -33,10 +33,10 @@ The frozen inputs are vendored under `vendor/` (copied verbatim from the lab's P
 
 ## Archive of record and addresses
 
-The organ-sealed snapshot of this experiment, `lra-runner-20261023b.tar.gz` (sha256 `71c4e2a875cfdda1c0f31a1cc8b44bb15e4e80ee0b4076e0cfd2884592c3e892`; rev b supersedes rev a, which remains sealed as history), is pinned on the archive of record at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/). The artifact carries two addresses — one per sister scheme, both derived from the artifact's own digest, nothing invented, nothing registered:
+The organ-sealed snapshot of this experiment, [`lra-runner-20261023b.tar.gz`](https://iqa.org/conformance/files/lra-runner-20261023b.tar.gz) (sha256 `71c4e2a875cfdda1c0f31a1cc8b44bb15e4e80ee0b4076e0cfd2884592c3e892`; rev b supersedes rev a, which remains sealed as history), is pinned on the archive of record at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/). The artifact carries two addresses — one per sister scheme, both derived from the artifact's own digest, nothing invented, nothing registered:
 
-- `rttp://71c4e2a8.conformance.iqa` — the question (WHERE + WHEN), intent side. intent = first 8 hex of the artifact digest (the intent field is 8 lowercase hex by grammar); pillar and root are operator-chosen labels.
-- `iqa://71c4e2a875cfdda1c0f31a1cc8b44bb1.forge.iqa` — the answer (WHETHER), attestation side. subject = first 32 hex of the same digest; organ `forge` (closed set). This is the exact subject the organ seal attests; the organ answers live at [organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1](https://iqa.org/organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1).
+- [`rttp://71c4e2a8.conformance.iqa`](https://rttp.com/open/?uri=rttp://71c4e2a8.conformance.iqa) — the question (WHERE + WHEN), intent side. intent = first 8 hex of the artifact digest (the intent field is 8 lowercase hex by grammar); pillar and root are operator-chosen labels.
+- [`iqa://71c4e2a875cfdda1c0f31a1cc8b44bb1.forge.iqa`](https://iqa.org/open/?uri=iqa://71c4e2a875cfdda1c0f31a1cc8b44bb1.forge.iqa) — the answer (WHETHER), attestation side. subject = first 32 hex of the same digest; organ `forge` (closed set). This is the exact subject the organ seal attests; the organ answers live at [organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1](https://iqa.org/organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1).
 
 Note: this section postdates the seal of the artifact it describes (a digest cannot be carried in the bytes it hashes, so the sealed copy carries the pointer without the digest), and re-archiving from HEAD yields a different digest — the sealed bytes remain the archive of record.
 
