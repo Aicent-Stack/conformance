@@ -166,5 +166,5 @@ RESULT: independent_run_matched
 
 ## Archive of record
 
-The complete artifact (code, frozen inputs, run report, recorded output) is pinned and organ-sealed on the archive of record at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/), where the artifact's digest and its two scheme addresses — `rttp://` (intent side) and `iqa://` (attestation side), both derived from the artifact's own SHA-256 digest — are published alongside the seal.
+The complete artifact (code, frozen inputs, run report, recorded output) is pinned and organ-sealed on the archive of record: `lra-runner-20261023b.tar.gz`, sha256 `71c4e2a875cfdda1c0f31a1cc8b44bb15e4e80ee0b4076e0cfd2884592c3e892`, at [iqa.org/conformance/lra-runner/](https://iqa.org/conformance/lra-runner/). The artifact carries two addresses derived from its own digest — one per sister scheme: `rttp://71c4e2a8.conformance.iqa` (the question, WHERE+WHEN; intent = first 8 hex) and `iqa://71c4e2a875cfdda1c0f31a1cc8b44bb1.forge.iqa` (the answer, WHETHER; subject = first 32 hex — the exact organ-sealed subject, live at [organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1](https://iqa.org/organ-api/v1/production?subject=71c4e2a875cfdda1c0f31a1cc8b44bb1)). This section postdates the run and the seal; the code-as-run pin above is unchanged.
 
