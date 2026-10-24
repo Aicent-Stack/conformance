@@ -1,0 +1,94 @@
+name: ci
+
+# Self-hosted mirror of the lab's public repository checks, so that every push
+# is verified here before it is filed upstream. Two of the jobs replicate the
+# checks the Agent-Authority-Conformance lab runs on interop filings
+# (repository hygiene and digest integrity); the third goes one step further
+# and re-runs the runner itself, gating on a byte-identical reproduction of the
+# recorded output.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Absolute local paths
+        run: |
+          set -euo pipefail
+          hits=$(git ls-files -z \
+            | grep -zv -E '^\.github/workflows/ci\.yml$' \
+            | xargs -0 grep -n -E '/Users/|/home/' /dev/null 2>/dev/null || true)
+          if [ -n "$hits" ]; then
+            echo "::error::Absolute local path in tracked files:"
+            printf '%s\n' "$hits" | sed 's/^/  /'
+            exit 1
+          fi
+          echo "ok: no absolute local paths"
+
+      - name: Secret-shaped files
+        run: |
+          set -euo pipefail
+          hits=$(git ls-files \
+            | grep -E '(^|/)\.env($|\.)|\.(pem|key|p12|pfx|jks|keystore)$|(^|/)id_(rsa|dsa|ecdsa|ed25519)$' \
+            || true)
+          if [ -n "$hits" ]; then
+            echo "::error::Secret-shaped file committed:"
+            printf '%s\n' "$hits" | sed 's/^/  /'
+            exit 1
+          fi
+          echo "ok: no secret-shaped files"
+
+      - name: Committed dependencies or build output
+        run: |
+          set -euo pipefail
+          hits=$(git ls-files | grep -E '(^|/)(node_modules|dist)/' || true)
+          if [ -n "$hits" ]; then
+            echo "::error::node_modules or dist committed:"
+            printf '%s\n' "$hits" | head -50 | sed 's/^/  /'
+            exit 1
+          fi
+          echo "ok: no committed node_modules or dist"
+
+      - name: CRLF anywhere in the repository
+        run: |
+          set -euo pipefail
+          hits=$(git ls-files | tr '\n' '\0' | xargs -0 -r grep -l -U -P '\r' 2>/dev/null || true)
+          if [ -n "$hits" ]; then
+            echo "::error::CRLF in tracked files:"
+            printf '%s\n' "$hits" | sed 's/^/  /'
+            exit 1
+          fi
+          echo "ok: no CRLF"
+
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Verify every digest manifest
+        run: python3 tests/digest_integrity.py
+
+  runner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Rerun the runner; output must reproduce the recorded bytes
+        run: |
+          set -euo pipefail
+          python3 lra-runner/lra_runner.py --json > "$RUNNER_TEMP/run.json"
+          cmp "$RUNNER_TEMP/run.json" lra-runner/run-output.json
+          python3 -c "import json; j=json.load(open('$RUNNER_TEMP/run.json')); assert j['status']=='independent_run_matched', j['status']; assert j['digest_gate'] is True; assert j['baseline_runs']==48 and j['baseline_failures']==0; print('runner ok:', j['baseline_runs'], 'runs,', j['baseline_calls'], 'calls,', j['baseline_scored_axes'], 'axes')"

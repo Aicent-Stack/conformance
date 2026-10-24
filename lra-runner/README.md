@@ -25,11 +25,11 @@ python lra_runner.py            # human summary
 python lra_runner.py --json     # full machine-readable report
 ```
 
-The frozen inputs are vendored under `vendor/` (copied verbatim from the lab's PR #180, `revision-2/`); the digest gate verifies them against the pinned manifest before any scoring, so a one-command replay works offline.
+The frozen inputs are vendored under `vendor/` (copied verbatim from the lab's PR #180, `revision-2/`; the live `SHA256SUMS.txt` is trimmed to the two vendored files and the lab's full pinned manifest is preserved verbatim as `lab-pinned-manifest.txt`); the digest gate verifies the vectors against the pinned digest before any scoring, so a one-command replay works offline.
 
 ## Repository layout
 
-`lra_runner.py` — the runner · `vendor/vectors.json` + `vendor/SHA256SUMS.txt` + `vendor/oracle-checkpoints.json` — frozen lab inputs, verbatim · `RUN-REPORT-2026-10-23.md` — full run report · `run-output.json` — machine-readable result of the 2026-10-23 run.
+`lra_runner.py` — the runner · `vendor/vectors.json` + `vendor/SHA256SUMS.txt` + `vendor/oracle-checkpoints.json` — frozen lab inputs (vectors and checkpoints verbatim; manifest trimmed, the original preserved as `lab-pinned-manifest.txt`) · `RUN-REPORT-2026-10-23.md` — full run report · `run-output.json` — machine-readable result of the 2026-10-23 run.
 
 ## Archive of record and addresses
 
@@ -42,4 +42,4 @@ Note: this section postdates the seal of the artifact it describes (a digest can
 
 ## License & credits
 
-This repository: Apache-2.0. The vectors, oracle checkpoints and SHA256SUMS manifest under `vendor/` are by the Agent Authority Conformance lab (PR #180), Apache-2.0, vendored verbatim with digest verification; the runner implementation is by the RTTP & IQA side (Aicent Stack).
+This repository: Apache-2.0. The vectors and oracle checkpoints under `vendor/` are by the Agent Authority Conformance lab (PR #180), Apache-2.0, vendored verbatim with digest verification (the lab's full pinned manifest is preserved verbatim as `vendor/lab-pinned-manifest.txt`); the runner implementation is by the RTTP & IQA side (Aicent Stack).

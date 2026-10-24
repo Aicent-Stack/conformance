@@ -18,7 +18,7 @@ The lab pins the revision-2 vectors by digest in `fixtures/lease-revocation-axes
 |---|---|
 | vectors.json | `a0a07ea58bcacfd056cbd648e03de4ff14778aa151e8b5d2574e43e31a111ed8` |
 
-The copies under `vendor/` are verbatim from the pinned commit. This runner enforces the pinned digest as a hard gate at load time — it refuses to score any vectors whose sha256 is not in the manifest — and the gate was verified negatively: a tampered copy is rejected before any scoring occurs. Commits on the PR branch after the run revision (`bccef3e`, `86e5e7a`) touch the family README only; the frozen inputs were re-verified on 2026-10-24 — the `revision-2/vectors.json` served at the PR head hashes to the pinned digest above.
+The data files under `vendor/` are byte-identical to the pinned commit; the live `SHA256SUMS.txt` is trimmed to the two vendored files, and the lab's full pinned manifest is preserved verbatim as `lab-pinned-manifest.txt`. This runner enforces the pinned digest as a hard gate at load time — it refuses to score any vectors whose sha256 is not in the manifest — and the gate was verified negatively: a tampered copy is rejected before any scoring occurs. Commits on the PR branch after the run revision (`bccef3e`, `86e5e7a`) touch the family README only; the frozen inputs were re-verified on 2026-10-24 — the `revision-2/vectors.json` served at the PR head hashes to the pinned digest above.
 
 ## Run mode and authorship
 
