@@ -185,3 +185,7 @@ The complete artifact (code, frozen inputs, run report, recorded output) is pinn
 
 Re-verified on 2026-10-24: three fresh full runs on the same environment produce byte-identical JSON reports — and, modulo line-ending normalization, identical to the recorded 2026-10-23 output; wall-clock ~0.17 s per run. The record was filed under `interop/` on the aps-conformance-suite repository on 2026-10-24 (`interop/rttp-iqa-lra-runner-lease-revocation-axes-8cb2e24/`), labeled per the lab's rules as Mode B, author-produced (PROVENANCE.md is aligned with the definition in the lab's `CONTRIBUTING.md`). The corpus-side frozen inputs were also re-verified unchanged on 2026-10-24: `revision-2/vectors.json` at PR #180 head `86e5e7a` hashes to the pinned digest.
 
+## 2026-10-25 addendum
+
+`lra_runner.py` was normalized to LF in this repository (sha256 `3569bb6f7cf2d99016d6965df89bbba1b7898a651a08d670b609b13004b3fe49`), matching the line-ending hygiene required by the lab's repository checks for the interop filing; the frozen inputs and the recorded output are unchanged, and a fresh run at this revision exits 0 with output identical to `run-output.json`. The code-as-run pin above (`8cb2e24`, rev c) is unchanged — this commit postdates the seal, as the earlier addenda do.
+
