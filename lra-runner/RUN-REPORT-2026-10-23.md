@@ -181,3 +181,7 @@ The complete artifact (code, frozen inputs, run report, recorded output) is pinn
 - [`rttp://94bbaf3c.conformance.iqa`](https://rttp.com/open/?uri=rttp://94bbaf3c.conformance.iqa) — the question (WHERE+WHEN; intent = first 8 hex)
 - [`iqa://94bbaf3c292abf69595bf5782d1db8cb.forge.iqa`](https://iqa.org/open/?uri=iqa://94bbaf3c292abf69595bf5782d1db8cb.forge.iqa) — the answer (WHETHER; subject = first 32 hex — the exact organ-sealed subject, live at the [organ endpoint](https://iqa.org/organ-api/v1/production?subject=94bbaf3c292abf69595bf5782d1db8cb)) This concrete section was backfilled after the seal of the artifact it describes — a digest cannot appear inside the bytes it hashes, so the sealed copy of this report (inside `lra-runner-20261023c.tar.gz`) carries the archive pointer without the digest; the code-as-run pin above is unchanged.
 
+## 2026-10-24 addendum
+
+Re-verified on 2026-10-24: three fresh full runs on the same environment produce byte-identical JSON reports — and, modulo line-ending normalization, identical to the recorded 2026-10-23 output; wall-clock ~0.17 s per run. The record was filed under `interop/` on the aps-conformance-suite repository on 2026-10-24 (`interop/rttp-iqa-lra-runner-lease-revocation-axes-8cb2e24/`), labeled per the lab's rules as Mode B, author-produced (PROVENANCE.md is aligned with the definition in the lab's `CONTRIBUTING.md`). The corpus-side frozen inputs were also re-verified unchanged on 2026-10-24: `revision-2/vectors.json` at PR #180 head `86e5e7a` hashes to the pinned digest.
+

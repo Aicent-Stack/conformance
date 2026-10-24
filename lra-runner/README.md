@@ -16,7 +16,7 @@ The runner enforces the lab's `SHA256SUMS.txt` digest as a hard gate — it refu
 
 48 baseline runs (4 profiles × 12 cases), 176 calls, 528 axis comparisons, 176 composite comparisons — zero failures, status `matched` on all runs; 12/12 defective mutants fail on exactly their pinned case sets (including `second-worker-stale` verified w2-only and `fabricated-live-read` caught via read provenance); 20/20 post-expiry diagnostic runs clean; 12/12 hand-reasoned oracle checkpoints; 5/5 reporting-semantics checks; three consecutive full runs produce byte-identical JSON reports; full run cost ~0.2 s wall-clock including interpreter startup (pure in-memory replay — no network, no RPC).
 
-See [RUN-REPORT-2026-10-23.md](RUN-REPORT-2026-10-23.md) for the full report and [run-output.json](run-output.json) for the machine-readable result.
+See [RUN-REPORT-2026-10-23.md](RUN-REPORT-2026-10-23.md) for the full report and [run-output.json](run-output.json) for the machine-readable result. On 2026-10-24 the run was re-verified (three fresh full runs, byte-identical JSON) and the record was filed under `interop/` on the [aps-conformance-suite](https://github.com/Agent-Authority-Conformance/aps-conformance-suite) repository.
 
 ## Replay
 
