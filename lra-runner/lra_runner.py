@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""RTTP/IQA independent runner — aps-conformance-suite lease-revocation-axes (revision 2).
+"""RTTP/IQA independent runner — aps-conformance-suite lease-revocation-axes (revisions 2 and 3).
 
 Independently authored Python implementation of the verifier contract declared by
 the lease-revocation-axes family spec (README.md / ORACLE.md), replaying the
-frozen revision-2 vectors against their pinned expected values.
+frozen vectors of a revision against their pinned expected values.
+
+Revision 2: baseline axes and composite outcome, as first filed (default mode).
+Revision 3 (merged upstream 2026-10-25, lab mainline commit 7774dae): every
+expected decision record and every answer gains `refusal_reason` (five values
+with a fixed precedence: evidence_binding_mismatch, evidence_expired,
+authority_not_determined, authority_revoked, operation_not_permitted; null
+whenever the decision is not deny) and `grant_ref` (the grant as issued, with
+observation_as_of_ms). Both fields are scored inside the action authorization
+axis and are only emitted for revision-3 vectors, so revision-2 runs stay
+byte-identical to the recorded rev-c output.
 
 Provenance: implementation authored by the RTTP & IQA side (Aicent Stack); the
 lab's TypeScript model was reviewed as the interface contract; no lab code was
@@ -12,8 +22,10 @@ reused; all pass/fail comparisons are against the frozen vectors file, never
 against lab model output.
 
 Usage:
-  python lra_runner.py                       # human summary
-  python lra_runner.py --json                # full JSON report
+  python lra_runner.py                       # human summary (revision 2)
+  python lra_runner.py --json                # full JSON report (revision 2)
+  python lra_runner.py --revision 3          # human summary for revision 3
+  python lra_runner.py --revision 3 --json   # full JSON report for revision 3
   python lra_runner.py --vectors <path>      # alternate vectors file
 
 Exit status: 0 when the run status is independent_run_matched, 1 otherwise
@@ -162,7 +174,7 @@ class Verifier:
     One instance per worker per run. Private caches only; the source is shared.
     """
 
-    def __init__(self, declaration, authority, downstream, mutant="correct"):
+    def __init__(self, declaration, authority, downstream, mutant="correct", extras=False):
         self.declaration = {
             "mode": declaration["mode"],
             "boundary": declaration["boundary"],
@@ -175,6 +187,7 @@ class Verifier:
         self._previous_use = {}    # evidence_id -> at_ms (private per instance)
         self._first_reads = {}     # grant -> observation (private per instance)
         self._ever_failed = False  # an outage was seen on a previous read
+        self._extras = bool(extras)  # revision 3: emit refusal_reason / grant_ref
 
     def _lease_len(self, evidence):
         return evidence["expires_at_ms"] - evidence["issued_at_ms"]
@@ -271,7 +284,7 @@ class Verifier:
         if action == "permit" or (self._mutant == "deny-but-dispatch" and action == "deny"):
             self._downstream.execute(c["id"])
 
-        return {
+        answer = {
             "evidence_binding": "matched" if bound else "mismatch",
             "evidence_freshness": "fresh" if fresh else "expired",
             "observation": copy.deepcopy(observation),
@@ -280,6 +293,35 @@ class Verifier:
             "verification_accepted": bool(bound and fresh and authority_answer == "valid"),
             "action_decision": action,
         }
+        if self._extras:
+            # revision 3: refusal_reason carries the first applicable deny cause
+            # (fixed precedence), null whenever the decision is not deny;
+            # grant_ref is the grant as issued, with the observation timestamp.
+            if action == "deny":
+                if not bound:
+                    refusal = "evidence_binding_mismatch"
+                elif not fresh:
+                    refusal = "evidence_expired"
+                elif current_validity == "not_established":
+                    refusal = "authority_not_determined"
+                elif current_validity == "revoked":
+                    refusal = "authority_revoked"
+                else:
+                    refusal = "operation_not_permitted"
+            else:
+                refusal = None
+            answer["refusal_reason"] = refusal
+            # grant_ref carries the observation timestamp only while the
+            # original evidence is fresh: a permissible post-expiry diagnostic
+            # read never renews the evidence and does not count as a grant
+            # observation (oracle: observation_as_of_ms stays null on expiry).
+            answer["grant_ref"] = {
+                "grant": e["grant"], "evidence_id": e["id"],
+                "issued_at_ms": e["issued_at_ms"], "expires_at_ms": e["expires_at_ms"],
+                "observation_as_of_ms": (None if observation is None or not fresh
+                                         else observation["as_of_ms"]),
+            }
+        return answer
 
 
 class CheckSponge:
@@ -299,6 +341,7 @@ def run_case(vectors, case, mode, boundary, mutant="correct",
     """Replay one frozen timeline under one declared profile; score per axes."""
     claimed = ALL_CLAIMED if claimed is None else list(claimed)
     profile = vectors["profile"]
+    extras = vectors.get("version") == 3
 
     # All support decisions are frozen before any implementation is constructed.
     mapping = {}
@@ -356,7 +399,7 @@ def run_case(vectors, case, mode, boundary, mutant="correct",
             workers[event["worker"]] = Verifier(
                 {"mode": mode, "boundary": boundary, "claimed_axes": claimed,
                  "action_policy": policy},
-                source, downstream, mutant)
+                source, downstream, mutant, extras=extras)
         verifier = workers[event["worker"]]
 
         before_reads = len(source.reads)
@@ -446,6 +489,11 @@ def run_case(vectors, case, mode, boundary, mutant="correct",
                              expected["action_decision"])
                 sponge.check(event["id"], "downstream_reached",
                              downstream.reached(event["id"]), expected["downstream_reached"])
+                if extras:
+                    sponge.check(event["id"], "refusal_reason", answer["refusal_reason"],
+                                 expected["refusal_reason"])
+                    sponge.check(event["id"], "grant_ref", answer["grant_ref"],
+                                 expected["grant_ref"])
             failed_axis = (len(sponge.failures) != before)
             if axis == "authority_validity" and assessment["source_contract"] == "failed":
                 failed_axis = True
@@ -512,9 +560,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--vectors", default=None)
+    ap.add_argument("--revision", choices=[2, 3], type=int, default=2)
     args = ap.parse_args()
 
-    default_vectors = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vendor", "vectors.json")
+    vendor_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "vendor-r3" if args.revision == 3 else "vendor")
+    default_vectors = os.path.join(vendor_dir, "vectors.json")
     path = args.vectors or default_vectors
     raw = open(path, "rb").read()
     vectors = json.loads(raw.decode("utf-8"))
@@ -528,7 +579,7 @@ def main():
         sys.exit("DIGEST GATE FAILED: vectors sha256 %s not pinned in SHA256SUMS.txt - refusing to score" % digest)
 
     assert vectors["family"] == "lease-revocation-axes"
-    assert vectors["status"] == "candidate" and vectors["version"] == 2
+    assert vectors["status"] == "candidate" and vectors["version"] == args.revision
     assert vectors["profile"]["lease_ms"] == 120000
     assert vectors["profile"]["lease_anchor"] == "evidence_issued_at_ms"
     assert vectors["profile"]["action_policy"] == DEFAULT_POLICY
@@ -634,10 +685,10 @@ def main():
     # (digest gate is enforced hard at load time, before any scoring)
 
     result = {
-        "family": vectors["family"], "revision": 2,
+        "family": vectors["family"], "revision": vectors["version"],
         "vectors_sha256": digest, "digest_gate": digest_gate,
         "implementation": "RTTP & IQA independent Python runner (lra_runner.py)",
-        "provenance": "independent implementation; comparisons against frozen revision-2 vectors only",
+        "provenance": "independent implementation; comparisons against frozen revision-%d vectors only" % vectors["version"],
         "declaration": {"claimed_axes": ALL_CLAIMED, "action_policy": DEFAULT_POLICY,
                         "note": "action-time authorization is not claimed (by design)"},
         "baseline_runs": len(baselines),
@@ -664,7 +715,8 @@ def main():
     if args.json:
         print(json.dumps(result, indent=2))
     else:
-        print("candidate %s revision 2, vectors sha256 %s" % (vectors["family"], digest[:16]))
+        print("candidate %s revision %d, vectors sha256 %s"
+              % (vectors["family"], vectors["version"], digest[:16]))
         print("digest gate vs pinned manifest: %s" % ("OK" if digest_gate else "FAIL"))
         print("%d independent baseline runs, %d calls, %d axis comparisons; %d composite comparisons"
               % (result["baseline_runs"], result["baseline_calls"],

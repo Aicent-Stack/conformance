@@ -40,6 +40,25 @@ The organ-sealed snapshot of this experiment, [`lra-runner-20261023c.tar.gz`](ht
 
 Note: this section postdates the seal of the artifact it describes (a digest cannot be carried in the bytes it hashes, so the sealed copy carries the pointer without the digest), and re-archiving from HEAD yields a different digest — the sealed bytes remain the archive of record.
 
+## Revision 3 (2026-10-26 run)
+
+The family's revision 3 (aps-conformance-suite PR #191, merged 2026-10-25) adds two fields to every decision record: `refusal_reason` — a closed five-value set (`evidence_binding_mismatch` → `evidence_expired` → `authority_not_determined` → `authority_revoked` → `operation_not_permitted`, evaluated in priority order) — and `grant_ref`, a back-reference binding each decision to the evidence it was made from (grant, evidence id, issue/expiry instants, `observation_as_of_ms`). A key semantic: a diagnostic read performed after evidence expiry does not renew the evidence — `grant_ref.observation_as_of_ms` is null when the only available observation is stale, even if a fresh read exists later in the timeline; diagnostic reads inform the report, never the authorization.
+
+The runner was extended (741 lines, still stdlib-only) with `--revision {2,3}`: revision 3 reads `vendor-r3/` (frozen inputs byte-identical to the merged PR #191 head `9a282619`), enforces the same hard digest gate, and carries the revision-3 record fields. The lab's `model.json` is deliberately not vendored and not read — the file-read surface is instrumented, so the independence claim stays executed rather than asserted.
+
+Results (2026-10-26): exit 0, `independent_run_matched` — 48 baseline runs (176 calls, 528 axis comparisons, 176 composite), zero failures; 12/12 mutants fail on exactly their pinned case sets (identical to revision 2's expected sets); 20/20 post-expiry diagnostics clean; 12/12 oracle checkpoints; 5/5 reporting checks. All five refusal values are exercised across the 117 denying records of 176 calls; all 176 records carry `grant_ref`. Three consecutive runs produce byte-identical JSON (`d777980195ef1d08…` raw, `78824b82a07eccdb…` canonical).
+
+## Replay
+
+```
+python lra_runner.py                    # revision 2, human summary
+python lra_runner.py --json             # revision 2, machine-readable
+python lra_runner.py --revision 3       # revision 3, human summary
+python lra_runner.py --revision 3 --json
+```
+
+The revision-3 frozen inputs are vendored under `vendor-r3/` (copied verbatim from the lab's PR #191 `revision-3/`; the live `SHA256SUMS.txt` is trimmed to the two vendored files and the lab's full pinned manifest is preserved verbatim as `lab-pinned-manifest.txt`). The revision-2 inputs remain under `vendor/`; one file, two revisions, one runner.
+
 ## License & credits
 
 This repository: Apache-2.0. The vectors and oracle checkpoints under `vendor/` are by the Agent Authority Conformance lab (PR #180), Apache-2.0, vendored verbatim with digest verification (the lab's full pinned manifest is preserved verbatim as `vendor/lab-pinned-manifest.txt`); the runner implementation is by the RTTP & IQA side (Aicent Stack).
