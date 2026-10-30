@@ -1,15 +1,46 @@
-# Aicent Stack — Conformance
+# conformance
 
-Conformance runners and run reports for the RTTP (Resonant Time Transfer Protocol) & IQA (Identity Quality Assurance) dual-pillar stack, published as independent recomputations against the [Agent Authority Conformance lab](https://github.com/Agent-Authority-Conformance/aps-conformance-suite).
+This is the central registry of sealed, byte-replayable conformance run records for the **RTTP & IQA** dual-pillar line. Every run against an external conformance suite — independently produced or author-produced — is recorded here as a self-contained, offline-replayable directory and indexed below. Human-readable report pages live at [iqa.org/conformance/](https://iqa.org/conformance/).
 
-## Experiments
+## What a run record is
 
-| directory | what | upstream |
-|---|---|---|
-| [`lra-runner/`](lra-runner/) | Independent Python runner + 2026-10-23 conformance run report for the `lease-revocation-axes` family (revision 2, candidate) | [aps-conformance-suite PR #180](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/180) |
+Each record directory is self-contained and carries everything needed to re-run the measurement offline:
 
-Each experiment directory is self-contained: its own runner, vendored frozen inputs, digest gate, provenance and run report. See `lra-runner/README.md` to replay in under a second.
+- **the runner** — the exact code that was run;
+- **vendored frozen inputs** — the test vectors and oracle material, frozen before the run and pinned by digest;
+- **a digest gate** — the runner refuses to execute if the frozen inputs do not match their recorded digests;
+- **PROVENANCE** — what the inputs are, whose work they vendor, and how this run relates to its authors (author-produced or independently produced is always stated; the lab's charter asks for nothing less);
+- **the run report** — the recorded output, sealed per the IQA release discipline.
+
+## Records
+
+| directory | family | revision | mode | recorded | lab record |
+|---|---|---|---|---|---|
+| [`lra-runner/`](lra-runner/) | lease-revocation-axes | 2 | independently produced — the first non-author-produced run in the lab's records | 2026-10-23 | [PR #187](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/187) (merged) |
+| [`lra-runner/`](lra-runner/) | lease-revocation-axes | 3 | author-produced (Mode B) | 2026-10-26 | [PR #194](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/194) (merged) |
+
+The specification under test is the combined Individual Submission Internet-Draft [`draft-li-rttp-iqa-addressing`](https://datatracker.ietf.org/doc/draft-li-rttp-iqa-addressing/) (revision -01, 34 pp., 2026-10-27); each record's own README names the sections it exercises.
+
+## Replay
+
+Each directory's README carries the exact command. Replaying a record is a single local command — no account, no network, no trust required; the digest gate fails closed if anything has drifted.
+
+## Sealing and addresses
+
+Stabilized records are sealed per the IQA release discipline and appended to the release-attestations bundles ([rttp.com/attestations/](https://rttp.com/attestations/) · [iqa.org/attestations/](https://iqa.org/attestations/)). Sealed records carry dual addresses and resolve through the public resolvers: `rttp://…` → [rttp.com/open/](https://rttp.com/open/) · `iqa://…` → [iqa.org/open/](https://iqa.org/open/).
+
+## Citation norm
+
+Run reports ship with a citation block naming the runner, its repository, and its operator. Any public reference to an independent run is asked to carry the same three facts.
+
+## Related
+
+- [`rttp`](https://github.com/Aicent-Stack/rttp) — the addressing scheme, Rust implementation
+- [`iqa-org`](https://github.com/Aicent-Stack/iqa-org) — attestation standing and envelopes, Rust implementation
+- [`iqa-mcp`](https://github.com/Aicent-Stack/iqa-mcp) — the primitives as MCP tools
+- [`interchange`](https://github.com/Aicent-Stack/interchange) — multi-party interchange work
+- Organization profile — [github.com/Aicent-Stack](https://github.com/Aicent-Stack)
 
 ## License
 
-Apache-2.0. Vendored upstream inputs remain the work of their authors, credited per experiment in each directory's PROVENANCE.
+Apache-2.0. Vendored upstream inputs remain the work of their authors, credited per record in each directory's PROVENANCE.
