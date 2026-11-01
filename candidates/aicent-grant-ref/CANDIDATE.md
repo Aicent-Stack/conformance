@@ -8,8 +8,7 @@ a candidate under `docs/CANDIDATES.md`. It is not a reviewed fixture and adds no
 schema, failure classes or verifier behavior.
 
 The source is a published Internet-Draft rather than a proposal under discussion: the closed
-refusal vocabulary and the priority order are defined by draft-li-rttp-i
-a-addressing-02, section
+refusal vocabulary and the priority order are defined by draft-li-rttp-iqa-addressing-02, section
 8.1, and the grant reference structure and the null rule for the observation member by section 8.2.
 The vocabulary has been exercised in public conformance runs recorded by this laboratory, including
 runs by implementers other than the author (the draft's section 8.3 records this); this candidate
@@ -21,29 +20,24 @@ ShaoBao Li (Lee), author of the draft. RTTP & IQA Organization.
 
 ## Normative target
 
-- `spec`: draft-li-rttp-i
-a-addressing-02, posted 2026-11-01
-  (https://datatracker.ietf.org/doc/html/draft-li-rttp-i
-a-addressing-02), sha256
+- `spec`: draft-li-rttp-iqa-addressing-02, posted 2026-11-01
+  (https://datatracker.ietf.org/doc/html/draft-li-rttp-iqa-addressing-02), sha256
   `02491c5a59d1e7471be04e8e0d4933dfc22ce19f9b054ead0aa449d6b4485044` of the retrieved TXT copy.
   Section 8.1 (Refusal Reasons) and section 8.2 (Grant Reference) are used. The draft is
   Informational and published for the public record; it is not the agreed text of any working
   group, and a later revision can change it.
 
-Rule descriptions 
-uote single sentences. Each case lists the sections it rests on in `basis`.
+Rule descriptions quote single sentences. Each case lists the sections it rests on in `basis`.
 
 ## Source
 
 Written for this candidate: `CANDIDATE.md`, `vectors.json`, `check.py`, `mutate.py`. No files are
-copied from the sources. Rule descriptions 
-uote single sentences.
+copied from the sources. Rule descriptions quote single sentences.
 
 ## License
 
 Apache 2.0, the license of this repository. The draft is an IETF Internet-Draft contribution; this
-candidate reuses no text from it beyond short 
-uoted sentences for identification and rule
+candidate reuses no text from it beyond short quoted sentences for identification and rule
 description, names the document and the sha256 of the retrieved copy, and adds no code from any
 implementation.
 
@@ -56,8 +50,7 @@ illustrative.
 |---|---|---|---|
 | GR-P01 to GR-P06, GR-P08 | R-ORDER | the priority order is part of the definition: the reason is the first value in the list whose condition applies, including mismatch over expiry (P01/P02), expiry over revocation (P03/P04), mismatch over revocation (P05), all three (P06), and operation_not_permitted alone (P08) | sect-8.1 |
 | GR-P09 | R-ORDER | no condition applies, so the reason must be null; emitting a refusal value without a condition is not conformant | sect-8.1 |
-| GR-P07, GR-N04 | R-NOTDET | an unreachable source, or an observation that predates the re
-uest, ends in authority_not_determined and is never read as assent; N04 flips to a permit on a diagnostic read, which does not participate in authorisation | sect-8.1, sect-8.2 |
+| GR-P07, GR-N04 | R-NOTDET | an unreachable source, or an observation that predates the request, ends in authority_not_determined and is never read as assent; N04 flips to a permit on a diagnostic read, which does not participate in authorisation | sect-8.1, sect-8.2 |
 | GR-N01 to GR-N03, GR-N05, GR-N06 | R-NULLOBS | observation_as_of_ms is null whenever the observation the answer relied on is absent or not fresh, even if a later successful observation exists (N01/N02/N03); a diagnostic read after the relied-on evidence expired neither backfills the member (N03) nor renews evidence (N05/N06) | sect-8.2 |
 | GR-C01 to GR-C04 | R-CLOSED | the set is closed: no affirmative "granted" value (C01), a response without its reason is not conformant (C02), no sixth value (C03), and null reason over the set is the only representation of permitted (C04) | sect-8.1 |
 | GR-G01 to GR-G04 | R-GRANTREF | every response, permit or refusal, carries the five members: grant, evidence_id, issued_at_ms, expires_at_ms, observation_as_of_ms; each of G02 to G04 drops one | sect-8.2 |
@@ -106,8 +99,7 @@ runs.
   is ambiguous.
 - GR-A02: section 8.2 says a revocation arriving just before or just after an invocation ends is a
   boundary no protocol erases, and names the record the response owes; which answer that boundary
-  re
-uires is settled, if at all, by the evaluation rules the draft references, which this candidate
+  requires is settled, if at all, by the evaluation rules the draft references, which this candidate
   does not cover. The case is scored in parts and the boundary call is ambiguous.
 - The five members are tested for presence only. Value formats, identifier syntax, and the
   relationship between expires_at_ms and the lease rules of the draft's section 6 are not covered.
