@@ -11,8 +11,8 @@ The source is a published Internet-Draft rather than a proposal under discussion
 refusal vocabulary and the priority order are defined by draft-li-rttp-iqa-addressing-02, section
 8.1, and the grant reference structure and the null rule for the observation member by section 8.2.
 The vocabulary has been exercised in public conformance runs recorded by this laboratory, including
-runs by implementers other than the author (the draft's section 8.3 records this); this candidate
-is the first one whose normative target is that published text itself.
+runs by implementers other than the author; the draft's section 8.3 records this. The expected
+values are anchored in the published text itself and were checked against it sentence by sentence.
 
 ## Submitter
 
