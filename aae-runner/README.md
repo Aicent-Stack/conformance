@@ -1,0 +1,36 @@
+# aae-runner — independent run record (moltycel-aae-vectors, AAE)
+
+This directory is the in-repository copy of the sealed artifact for our
+independent run of the `moltycel-aae-vectors` candidate family (AAE),
+authored by Lars Kersten Kroehl (MoltyCel) and merged into the
+Agent-Authority-Conformance lab as PR #190.
+
+What happened: following the merge of #190, we ran the candidate's own
+pipeline unmodified, as independent operators — 47/47 vectors, 11/11
+negative controls, 14/14 unit tests, byte-reproducible output, exit 0.
+The candidate's CANDIDATE.md line "No independent run exists yet" is
+thereby closed.
+
+Contents:
+
+- `ENVIRONMENT.txt` — the environment the run was performed in
+- `run-output.txt` — the recorded output of the run
+- `moltycel-aae-vectors/` — the candidate frozen at commit `6bb462f`,
+  vendored byte-for-byte with no modification (see its NOTICE)
+- `SHA256SUMS.txt` — digest manifest over the above; CI verifies every
+  entry (tests/digest_integrity.py). The manifest here is a path-adapted
+  copy of the sealed manifest (which pins paths relative to the extraction
+  root); the file bytes and every digest are identical.
+
+Pointers:
+
+- Full report: https://iqa.org/conformance/aae-runner/
+- Sealed artifact of record: `aae-runner-20261104a.tar.gz`
+  (SHA-256 `5dd92d2729c90932…`), at
+  https://iqa.org/conformance/files/aae-runner-20261104a.tar.gz
+- Lab interop record, in review: PR #215
+  (https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/215)
+- Run date: 2026-11-04 · operator: Lee / Aicent Stack
+  (RTTP, CRI scheme number 27 · IQA, CRI scheme number 28)
+
+This run verifies the vectors, not the spec.
