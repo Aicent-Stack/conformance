@@ -40,6 +40,9 @@ def main():
         entries = 0
         for raw in open(df, "rb").read().decode("utf-8").splitlines():
             line = raw.strip()
+            if line.startswith("#"):
+                # comment line, as tolerated by the lab's checker
+                continue
             if not line:
                 continue
             parts = line.split(None, 1)
