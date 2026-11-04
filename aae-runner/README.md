@@ -11,6 +11,12 @@ negative controls, 14/14 unit tests, byte-reproducible output, exit 0.
 The candidate's CANDIDATE.md line "No independent run exists yet" is
 thereby closed.
 
+Scope: this run covers the candidate's native, enforce and composition
+vector sets and the 11 negative controls at source `6bb462f` (published
+23 October). The 42 resume vectors and the Python and TypeScript
+conformance runners added to the source repository after 23 October are
+outside this record; no independent run of those exists yet.
+
 Contents:
 
 - `ENVIRONMENT.txt` — the environment the run was performed in
@@ -30,7 +36,7 @@ Pointers:
   https://iqa.org/conformance/files/aae-runner-20261104a.tar.gz
 - Lab interop record, in review: PR #215
   (https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/215)
-- Run date: 2026-11-04 · operator: Lee / Aicent Stack
+- Run date: 2026-11-04 (UTC+8) · operator: Lee / Aicent Stack
   (RTTP, CRI scheme number 27 · IQA, CRI scheme number 28)
 
 This run verifies the vectors, not the spec.
