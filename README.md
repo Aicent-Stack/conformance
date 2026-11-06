@@ -21,7 +21,7 @@ Each record directory is self-contained and carries everything needed to re-run 
 
 Classification follows the lab's definition (`CONTRIBUTING.md`): a record is *independent* when its producer authored neither the vectors, the claim inputs, nor the implementation that supplies the recomputation — here the operator wrote the runner, so both records are author-produced, while the runner itself (`lra_runner.py`) is written independently of the lab's corpus. Larry Lewis independently reproduced both revisions on 2026-10-29 (zero baseline failures, all 12 mutation failure sets matching); a replay of these records by an operator who authored none of the above may be recorded alongside as an independently produced record.
 
-The specification under test is the combined Individual Submission Internet-Draft [`draft-li-rttp-iqa-addressing`](https://datatracker.ietf.org/doc/draft-li-rttp-iqa-addressing/) (revision -01, 34 pp., 2026-10-27); each record's own README names the sections it exercises.
+The specification under test is the combined Individual Submission Internet-Draft [`draft-li-rttp-iqa-addressing`](https://datatracker.ietf.org/doc/draft-li-rttp-iqa-addressing/) (revision -02, 40 pp., 2026-11-01); each record's own README names the sections it exercises.
 
 ## Replay
 
