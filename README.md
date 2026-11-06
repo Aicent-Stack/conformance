@@ -18,10 +18,18 @@ Each record directory is self-contained and carries everything needed to re-run 
 |---|---|---|---|---|---|
 | [`lra-runner/`](lra-runner/) | lease-revocation-axes | 2 | author-produced (Mode B) | 2026-10-23 | [PR #187](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/187) (merged) |
 | [`lra-runner/`](lra-runner/) | lease-revocation-axes | 3 | author-produced (Mode B) | 2026-10-26 | [PR #194](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/194) (merged) |
+| [`aae-runner/`](aae-runner/) | moltycel-aae-vectors (AAE) | fixture v0 | independently produced | 2026-11-04 | [PR #215](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/215) (merged) |
 
-Classification follows the lab's definition (`CONTRIBUTING.md`): a record is *independent* when its producer authored neither the vectors, the claim inputs, nor the implementation that supplies the recomputation — here the operator wrote the runner, so both records are author-produced, while the runner itself (`lra_runner.py`) is written independently of the lab's corpus. Larry Lewis independently reproduced both revisions on 2026-10-29 (zero baseline failures, all 12 mutation failure sets matching); a replay of these records by an operator who authored none of the above may be recorded alongside as an independently produced record.
+Classification follows the lab's definition (`CONTRIBUTING.md`): a record is *independent* when its producer authored neither the vectors, the claim inputs, nor the implementation that supplies the recomputation — here the operator wrote the runner, so both records are author-produced, while the runner itself (`lra_runner.py`) is written independently of the lab's corpus. Larry Lewis independently reproduced both revisions on 2026-10-29 (zero baseline failures, all 12 mutation failure sets matching); a replay of these records by an operator who authored none of the above may be recorded alongside as an independently produced record. The `aae-runner` record is independently produced: the family, its vectors, and its pipeline are the work of Lars Kersten Kroehl (MoltyCel), merged upstream as PR #190; our operator ran the candidate's own pipeline unmodified and recorded the output.
 
 The specification under test is the combined Individual Submission Internet-Draft [`draft-li-rttp-iqa-addressing`](https://datatracker.ietf.org/doc/draft-li-rttp-iqa-addressing/) (revision -02, 40 pp., 2026-11-01); each record's own README names the sections it exercises.
+
+## Vector families
+
+Two vector families of our own authorship are merged into the lab's mainline as candidates; each anchors every expectation to published sections of the specification under test and ships with its own mutation battery:
+
+- [`candidates/aicent-grant-ref/`](candidates/aicent-grant-ref/) — the response semantics of an attestation answer: which refusal value the closed vocabulary owes, when the observation member must be null, and which structure members every response carries. Merged upstream as [PR #210](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/210) (2026-11-03). Family page: [iqa.org/conformance/aicent-grant-ref/](https://iqa.org/conformance/aicent-grant-ref/).
+- [`candidates/aicent-lease-boundary/`](candidates/aicent-lease-boundary/) — the lease of an attestation answer: which boundary convention an implementation may declare and apply at the lease instant, what an expired lease still owes, how the declared answer mode shapes the refusal when the organ cannot be reached, and which expiry a verifier checks. Merged upstream as [PR #212](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/212) (2026-11-03). Family page: [iqa.org/conformance/aicent-lease-boundary/](https://iqa.org/conformance/aicent-lease-boundary/).
 
 ## Replay
 
