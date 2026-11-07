@@ -99,3 +99,10 @@ jobs:
           python3 lra-runner/lra_runner.py --revision 3 --json > "$RUNNER_TEMP/run-rev3.json"
           cmp "$RUNNER_TEMP/run-rev3.json" lra-runner/run-output-rev3.json
           python3 -c "import json; j=json.load(open('$RUNNER_TEMP/run-rev3.json')); assert j['status']=='independent_run_matched', j['status']; assert j['digest_gate'] is True; assert j['baseline_runs']==48 and j['baseline_failures']==0; print('runner rev3 ok:', j['baseline_runs'], 'runs,', j['baseline_calls'], 'calls,', j['baseline_scored_axes'], 'axes')"
+
+      - name: Rerun the icam runner; output must reproduce the recorded bytes
+        run: |
+          set -euo pipefail
+          python3 -I icam-runner/icam_runner.py icam-runner/vendor/vectors.json "$RUNNER_TEMP/icam.json"
+          cmp "$RUNNER_TEMP/icam.json" icam-runner/run-output.json
+          python3 -c "import json; j=json.load(open('$RUNNER_TEMP/icam.json')); s=j['summary']; assert s=={'cases':24,'agree':24,'mutants':6,'mutants_killed':6}, s; print('icam runner ok: 24/24 agree, 6/6 killed')"
