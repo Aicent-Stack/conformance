@@ -34,9 +34,23 @@ Pointers:
 - Sealed artifact of record: `aae-runner-20261104a.tar.gz`
   (SHA-256 `5dd92d2729c90932…`), at
   https://iqa.org/conformance/files/aae-runner-20261104a.tar.gz
-- Lab interop record, in review: PR #215
+- Lab interop record: PR #215, merged 2026-11-04
   (https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/215)
 - Run date: 2026-11-04 (UTC+8) · operator: Lee / Aicent Stack
   (RTTP, CRI scheme number 27 · IQA, CRI scheme number 28)
 
 This run verifies the vectors, not the spec.
+
+
+## Replay
+
+```
+sh moltycel-aae-vectors/run.sh
+```
+
+Requires git, python3 (3.9+) and the pip packages recorded in
+`ENVIRONMENT.txt` (cryptography, jsonschema, jcs, pytest). The clone step is
+the only network step; every verification after it runs offline behind the
+candidate's audit hook. CI replays this pipeline on every push and compares
+the fresh output with `run-output.txt` (byte-identical modulo the pytest
+elapsed-time figure).

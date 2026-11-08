@@ -52,3 +52,15 @@ The measurement is sealed per the IQA release discipline:
 
 - Runner: `icam_runner.py` — https://github.com/Aicent-Stack/conformance (`icam-runner/`)
 - Operator: Lee / Aicent Stack (ShaoBao Li, @Aicent-com), RTTP CRI 27 · IQA CRI 28
+
+
+## Re-proposal note (2026-11-08)
+
+The candidate was re-proposed as head `62ea926` to address the publication
+review (ICAM-LB-01). Verified against `72a0f72` on 2026-11-08: the change
+touches `CANDIDATE.md`, `CHECKSUMS.sha256` and four `case_status` metadata
+lines in `vectors.json` (`normative` → `convention_specific`); the 24 case
+inputs and every expectation are byte-identical. This record stays pinned to
+`72a0f72` — the vendored inputs under `vendor/` are byte-identical to that
+head, so the recorded run and the independent runner's agreement carry over
+unchanged.
