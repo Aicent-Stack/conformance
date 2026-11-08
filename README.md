@@ -50,6 +50,7 @@ Run reports ship with a citation block naming the runner, its repository, and it
 - [`iqa-org`](https://github.com/Aicent-Stack/iqa-org) — attestation standing and envelopes, Rust implementation
 - [`iqa-mcp`](https://github.com/Aicent-Stack/iqa-mcp) — the primitives as MCP tools
 - [`interchange`](https://github.com/Aicent-Stack/interchange) — multi-party interchange work
+- [`azuli.com`](https://azuli.com/) — Azuli, the public brand of this verification venue, operated by the RTTP & IQA Organization
 - Organization profile — [github.com/Aicent-Stack](https://github.com/Aicent-Stack)
 
 ## License
