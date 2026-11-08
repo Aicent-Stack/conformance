@@ -2,6 +2,19 @@
 
 This is the central registry of sealed, byte-replayable conformance run records for the **RTTP & IQA** dual-pillar line. Every run against an external conformance suite — independently produced or author-produced — is recorded here as a self-contained, offline-replayable directory and indexed below. Human-readable report pages live at [iqa.org/conformance/](https://iqa.org/conformance/).
 
+## Directory layout — one top-level folder per lab or project
+
+| folder | lab / project | contents |
+|---|---|---|
+| [`lra-runner/`](lra-runner/) | **Aicent Stack** (RTTP & IQA, ours) — lease-revocation-axes family | our own runner over our own family (lab PRs #187 / #194) |
+| [`candidates/`](candidates/) | **Aicent Stack** (RTTP & IQA, ours) — aicent-grant-ref and aicent-lease-boundary families | our vector families, merged lab mainline (PRs #210 / #212) |
+| [`interop/`](interop/) | **Aicent Stack** (RTTP & IQA, ours) | clarification records from the lab interop filings |
+| [`aae-runner/`](aae-runner/) | **MoltyCel** (Lars Kersten Kroehl) — moltycel-aae-vectors | our independent run of their pipeline (lab PR #215) |
+| [`icam-runner/`](icam-runner/) | **ICAM** (Nika Novak, danyka-icam) — icam-temporal-derivation | our independent runner over their candidate (lab PR #218) |
+| [`probityai/`](probityai/) | **Probity AI** (Gilda, @astrogilda) — agent-evidence-vectors | thread archive of the crosswalk, per-node: #453 / #469 / #483 / #492 / #494 |
+
+**Paths are frozen.** External filings reference these directories directly — issue [#453](https://github.com/probityai/agent-evidence-vectors/issues/453) and the registry entry on [#492](https://github.com/probityai/agent-evidence-vectors/issues/492) cite `…/tree/main/candidates` verbatim, and the lab's merged records vendor these paths — so existing top-level directories will not be moved or renamed. A new lab or project joins under a single top-level folder of its own (the `probityai/` pattern); established paths stay as first published.
+
 ## What a run record is
 
 Each record directory is self-contained and carries everything needed to re-run the measurement offline:
