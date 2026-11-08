@@ -32,6 +32,14 @@ Two vector families of our own authorship are merged into the lab's mainline as 
 - [`candidates/aicent-grant-ref/`](candidates/aicent-grant-ref/) — the response semantics of an attestation answer: which refusal value the closed vocabulary owes, when the observation member must be null, and which structure members every response carries. Merged upstream as [PR #210](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/210) (2026-11-03). Family page: [iqa.org/conformance/aicent-grant-ref/](https://iqa.org/conformance/aicent-grant-ref/).
 - [`candidates/aicent-lease-boundary/`](candidates/aicent-lease-boundary/) — the lease of an attestation answer: which boundary convention an implementation may declare and apply at the lease instant, what an expired lease still owes, how the declared answer mode shapes the refusal when the organ cannot be reached, and which expiry a verifier checks. Merged upstream as [PR #212](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/212) (2026-11-03). Family page: [iqa.org/conformance/aicent-lease-boundary/](https://iqa.org/conformance/aicent-lease-boundary/).
 
+## External evaluations
+
+Other venues have evaluated the families against their own contracts. Those evaluations are recorded as
+thread archives — verbatim issue text and responses, pinned by digest — not as run records: no runner
+executed, so there is nothing to replay.
+
+- [`probityai-453/`](probityai-453/) — [probityai/agent-evidence-vectors#453](https://github.com/probityai/agent-evidence-vectors/issues/453): five records from the two families under the audit-record contract's crosswalk, filed 2026-11-05 as an issue (no PR on the venue's side), closed completed 2026-11-07. The venue confirmed a contract gap in its reason-parity rule and adopted `GR-P03`/`GR-P04` as the paired fixture for a manifest field credited under our name; upstream implementation pending as of 2026-11-09.
+
 ## Replay
 
 Each directory's README carries the exact command. Replaying a record is a single local command — no account, no network, no trust required; the digest gate fails closed if anything has drifted.
@@ -51,6 +59,7 @@ Run reports ship with a citation block naming the runner, its repository, and it
 - [`iqa-mcp`](https://github.com/Aicent-Stack/iqa-mcp) — the primitives as MCP tools
 - [`interchange`](https://github.com/Aicent-Stack/interchange) — multi-party interchange work
 - [`azuli.com`](https://azuli.com/) — Azuli, the public brand of this verification venue, operated by the RTTP & IQA Organization
+- [`agent-evidence-vectors`](https://github.com/probityai/agent-evidence-vectors) — the Probity AI audit-record contract; venue of the #453 evaluation (see [`probityai-453/`](probityai-453/))
 - Organization profile — [github.com/Aicent-Stack](https://github.com/Aicent-Stack)
 
 ## License
