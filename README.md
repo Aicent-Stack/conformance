@@ -38,7 +38,7 @@ Other venues have evaluated the families against their own contracts. Those eval
 thread archives — verbatim issue text and responses, pinned by digest — not as run records: no runner
 executed, so there is nothing to replay.
 
-- [`probityai-453/`](probityai-453/) — [probityai/agent-evidence-vectors#453](https://github.com/probityai/agent-evidence-vectors/issues/453): five records from the two families under the audit-record contract's crosswalk, filed 2026-11-05 as an issue (no PR on the venue's side), closed completed 2026-11-07. The venue confirmed a contract gap in its reason-parity rule and adopted `GR-P03`/`GR-P04` as the paired fixture for a manifest field credited under our name; upstream implementation pending as of 2026-11-09.
+- [`probityai/`](probityai/) — the thread with [probityai/agent-evidence-vectors](https://github.com/probityai/agent-evidence-vectors): our five-record crosswalk filed as issue [#453](https://github.com/probityai/agent-evidence-vectors/issues/453) (closed completed), the venue's refusal-reason-priority corpus built from those records ([PR #483](https://github.com/probityai/agent-evidence-vectors/pull/483), merged, digest-confirmed by us), the predicate-registry RFC ([#492](https://github.com/probityai/agent-evidence-vectors/issues/492), our `predicate/v1/refusal-reason-priority` entry filed) and the suites roadmap ([#494](https://github.com/probityai/agent-evidence-vectors/issues/494), open). Per-node verbatim archives: [`probityai/453/`](probityai/453/) · [`probityai/469/`](probityai/469/) · [`probityai/483/`](probityai/483/) · [`probityai/492/`](probityai/492/) · [`probityai/494/`](probityai/494/).
 
 ## Replay
 
@@ -59,7 +59,7 @@ Run reports ship with a citation block naming the runner, its repository, and it
 - [`iqa-mcp`](https://github.com/Aicent-Stack/iqa-mcp) — the primitives as MCP tools
 - [`interchange`](https://github.com/Aicent-Stack/interchange) — multi-party interchange work
 - [`azuli.com`](https://azuli.com/) — Azuli, the public brand of this verification venue, operated by the RTTP & IQA Organization
-- [`agent-evidence-vectors`](https://github.com/probityai/agent-evidence-vectors) — the Probity AI audit-record contract; venue of the #453 evaluation (see [`probityai-453/`](probityai-453/))
+- [`agent-evidence-vectors`](https://github.com/probityai/agent-evidence-vectors) — the Probity AI audit-record contract; venue of the #453–#494 thread (see [`probityai/`](probityai/))
 - Organization profile — [github.com/Aicent-Stack](https://github.com/Aicent-Stack)
 
 ## License
