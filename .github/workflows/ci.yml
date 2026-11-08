@@ -106,3 +106,11 @@ jobs:
           python3 -I icam-runner/icam_runner.py icam-runner/vendor/vectors.json "$RUNNER_TEMP/icam.json"
           cmp "$RUNNER_TEMP/icam.json" icam-runner/run-output.json
           python3 -c "import json; j=json.load(open('$RUNNER_TEMP/icam.json')); s=j['summary']; assert s=={'cases':24,'agree':24,'mutants':6,'mutants_killed':6}, s; print('icam runner ok: 24/24 agree, 6/6 killed')"
+
+      - name: Rerun the aae candidate pipeline; output must reproduce the recorded bytes
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet cryptography==50.0.2 jsonschema==4.26.0 jcs==0.2.1 pytest==9.2.0
+          sh aae-runner/moltycel-aae-vectors/run.sh > "$RUNNER_TEMP/aae-run.txt" 2>&1
+          python3 -c "import os,re,sys; norm=lambda s: re.sub(r'[0-9]+ passed in [0-9.]+s', lambda m: m.group(0).split(' in ')[0]+' in T', s.replace(chr(13)+chr(10), chr(10))).rstrip(chr(10)); a=norm(open('aae-runner/run-output.txt',encoding='utf-8').read()); b=norm(open(os.path.join(os.environ['RUNNER_TEMP'],'aae-run.txt'),encoding='utf-8',errors='replace').read()); sys.exit(0) if a==b else (print('aae replay drift'), sys.exit(1))"
+          echo "aae replay ok: recorded output reproduced (pytest elapsed-time figure normalised)"
