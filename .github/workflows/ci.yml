@@ -107,6 +107,13 @@ jobs:
           cmp "$RUNNER_TEMP/icam.json" icam-runner/run-output.json
           python3 -c "import json; j=json.load(open('$RUNNER_TEMP/icam.json')); s=j['summary']; assert s=={'cases':24,'agree':24,'mutants':6,'mutants_killed':6}, s; print('icam runner ok: 24/24 agree, 6/6 killed')"
 
+      - name: Rerun the family runner over the six candidate families; output must reproduce the recorded bytes
+        run: |
+          set -euo pipefail
+          python3 -I family-runner/family_runner.py candidates "$RUNNER_TEMP/families.json"
+          cmp "$RUNNER_TEMP/families.json" family-runner/run-output.json
+          python3 -c "import json; j=json.load(open('$RUNNER_TEMP/families.json')); s=j['summary']; assert s=={'cases':125,'agree':125,'mutants':94,'mutants_killed':94}, s; print('family runner ok:', s['cases'], 'cases agree,', s['mutants_killed'], 'mutants killed')"
+
       - name: Rerun the aae candidate pipeline; output must reproduce the recorded bytes
         run: |
           set -euo pipefail

@@ -1,0 +1,1939 @@
+{
+  "families": [
+    {
+      "agree_count": 25,
+      "case_count": 25,
+      "cases": [
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-P01",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-P02",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-P03",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-P04",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-P05",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-P06",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-P07",
+          "rule": "R-NOTDET"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-P08",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-P09",
+          "rule": "R-ORDER"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-N01",
+          "rule": "R-NULLOBS"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-N02",
+          "rule": "R-NULLOBS"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-N03",
+          "rule": "R-NULLOBS"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-N04",
+          "rule": "R-NOTDET"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-N05",
+          "rule": "R-NULLOBS"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-N06",
+          "rule": "R-NULLOBS"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-C01",
+          "rule": "R-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-C02",
+          "rule": "R-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-C03",
+          "rule": "R-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-C04",
+          "rule": "R-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "GR-G01",
+          "rule": "R-GRANTREF"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-G02",
+          "rule": "R-GRANTREF"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-G03",
+          "rule": "R-GRANTREF"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "GR-G04",
+          "rule": "R-GRANTREF"
+        },
+        {
+          "agree": true,
+          "expect": "ambiguous",
+          "expect_parts": {
+            "computation_source": "ambiguous",
+            "value_and_assent": "conformant"
+          },
+          "got": "ambiguous",
+          "got_parts": {
+            "computation_source": "ambiguous",
+            "value_and_assent": "conformant"
+          },
+          "id": "GR-A01",
+          "rule": "R-NOTDET"
+        },
+        {
+          "agree": true,
+          "expect": "ambiguous",
+          "expect_parts": {
+            "boundary_call": "ambiguous",
+            "value": "conformant"
+          },
+          "got": "ambiguous",
+          "got_parts": {
+            "boundary_call": "ambiguous",
+            "value": "conformant"
+          },
+          "id": "GR-A02",
+          "rule": "R-ORDER"
+        }
+      ],
+      "family": "aicent-grant-ref",
+      "mutant_count": 21,
+      "mutants": [
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-P02",
+            "GR-P04",
+            "GR-A02"
+          ],
+          "name": "R-ORDER: drop priority, keep null split"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-A02"
+          ],
+          "name": "R-ORDER: race boundary decided"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N04"
+          ],
+          "name": "R-NOTDET: assent accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-A01"
+          ],
+          "name": "R-NOTDET: label computation decided"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-C01",
+            "GR-C03"
+          ],
+          "name": "R-CLOSED: any present value accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-C02"
+          ],
+          "name": "R-CLOSED: reason optional"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N03"
+          ],
+          "name": "R-NULLOBS: backfill accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N06"
+          ],
+          "name": "R-NULLOBS: renewal accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N02",
+            "GR-N03",
+            "GR-N05"
+          ],
+          "name": "R-NULLOBS: member must never be null"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-G02"
+          ],
+          "name": "R-GRANTREF: observation member optional"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-G02",
+            "GR-G03",
+            "GR-G04"
+          ],
+          "name": "R-GRANTREF: structure only"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-P01",
+            "GR-P03",
+            "GR-P05",
+            "GR-P06",
+            "GR-P08",
+            "GR-A02"
+          ],
+          "name": "R-ORDER: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-P02",
+            "GR-P04",
+            "GR-P09",
+            "GR-A02"
+          ],
+          "name": "R-ORDER: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-P07",
+            "GR-A01"
+          ],
+          "name": "R-NOTDET: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N04",
+            "GR-A01"
+          ],
+          "name": "R-NOTDET: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-C04"
+          ],
+          "name": "R-CLOSED: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-C01",
+            "GR-C02",
+            "GR-C03"
+          ],
+          "name": "R-CLOSED: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N01",
+            "GR-N02",
+            "GR-N05"
+          ],
+          "name": "R-NULLOBS: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-N03",
+            "GR-N06"
+          ],
+          "name": "R-NULLOBS: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-G01"
+          ],
+          "name": "R-GRANTREF: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "GR-G02",
+            "GR-G03",
+            "GR-G04"
+          ],
+          "name": "R-GRANTREF: always conformant"
+        }
+      ],
+      "mutants_killed": 21,
+      "spec": "draft-li-rttp-iqa-addressing-02 sec. 8.1-8.2"
+    },
+    {
+      "agree_count": 15,
+      "case_count": 15,
+      "cases": [
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-D01",
+          "rule": "R-DECLARED"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-D02",
+          "rule": "R-DECLARED"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "LB-D03",
+          "rule": "R-DECLARED"
+        },
+        {
+          "agree": true,
+          "expect": "ambiguous",
+          "expect_parts": {
+            "answer_within_a_convention": "conformant",
+            "declaration": "ambiguous"
+          },
+          "got": "ambiguous",
+          "got_parts": {
+            "answer_within_a_convention": "conformant",
+            "declaration": "ambiguous"
+          },
+          "id": "LB-D04",
+          "rule": "R-DECLARED"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-D05",
+          "rule": "R-DECLARED"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-E01",
+          "rule": "R-NOEXTEND"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "LB-E02",
+          "rule": "R-NOEXTEND"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "LB-E03",
+          "rule": "R-NOEXTEND"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-M01",
+          "rule": "R-MODE"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "LB-M02",
+          "rule": "R-MODE"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-M03",
+          "rule": "R-MODE"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-M04",
+          "rule": "R-MODE"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-M05",
+          "rule": "R-MODE"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "LB-W01",
+          "rule": "R-WINDOW"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "LB-W02",
+          "rule": "R-WINDOW"
+        }
+      ],
+      "family": "aicent-lease-boundary",
+      "mutant_count": 17,
+      "mutants": [
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-D04"
+          ],
+          "name": "R-DECLARED: undeclared boundary decided inclusive"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-D01",
+            "LB-D02",
+            "LB-D03",
+            "LB-D05"
+          ],
+          "name": "R-DECLARED: declaration contradicts use"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-D05"
+          ],
+          "name": "R-DECLARED: frame acceptance read as reliance"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-E02",
+            "LB-E03"
+          ],
+          "name": "R-NOEXTEND: replay as fresh accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-E03"
+          ],
+          "name": "R-NOEXTEND: grace reinterpretation accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-M02"
+          ],
+          "name": "R-MODE: cache rescues live mode"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-M04"
+          ],
+          "name": "R-MODE: policy ignored in cached mode"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-M05"
+          ],
+          "name": "R-MODE: cache age ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-W01",
+            "LB-W02"
+          ],
+          "name": "R-WINDOW: default window assumed"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-D01",
+            "LB-D02",
+            "LB-D04",
+            "LB-D05"
+          ],
+          "name": "R-DECLARED: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-D03",
+            "LB-D04"
+          ],
+          "name": "R-DECLARED: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-E01"
+          ],
+          "name": "R-NOEXTEND: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-E02",
+            "LB-E03"
+          ],
+          "name": "R-NOEXTEND: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-M01",
+            "LB-M03",
+            "LB-M04",
+            "LB-M05"
+          ],
+          "name": "R-MODE: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-M02"
+          ],
+          "name": "R-MODE: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-W01"
+          ],
+          "name": "R-WINDOW: always nonconformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "LB-W02"
+          ],
+          "name": "R-WINDOW: always conformant"
+        }
+      ],
+      "mutants_killed": 17,
+      "spec": "draft-li-rttp-iqa-addressing-02 sec. 6.1-6.3, 7.2"
+    },
+    {
+      "agree_count": 19,
+      "case_count": 19,
+      "cases": [
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "pass"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "pass"
+          },
+          "id": "AE-P01",
+          "rule": "R-REPRODUCE"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "length",
+            "verify": "not_reached"
+          },
+          "id": "AE-N01",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "length",
+            "verify": "not_reached"
+          },
+          "id": "AE-N02",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "magic",
+            "verify": "not_reached"
+          },
+          "id": "AE-N03",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "version",
+            "verify": "not_reached"
+          },
+          "id": "AE-N04",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "algorithm",
+            "verify": "not_reached"
+          },
+          "id": "AE-N05",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "algorithm",
+            "verify": "not_reached"
+          },
+          "id": "AE-N06",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "flags",
+            "verify": "not_reached"
+          },
+          "id": "AE-N07",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "standing",
+            "verify": "not_reached"
+          },
+          "id": "AE-N08",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "reserved",
+            "verify": "not_reached"
+          },
+          "id": "AE-N09",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "extension",
+            "verify": "not_reached"
+          },
+          "id": "AE-N10",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "organ",
+            "verify": "not_reached"
+          },
+          "id": "AE-N11",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T01",
+          "rule": "R-HMAC-COVERS-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T02",
+          "rule": "R-HMAC-COVERS-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T03",
+          "rule": "R-HMAC-COVERS-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T04",
+          "rule": "R-HMAC-COVERS-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T05",
+          "rule": "R-HMAC-COVERS-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T06",
+          "rule": "R-HMAC-COVERS-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "got": {
+            "parse": "accept",
+            "verify": "fail"
+          },
+          "id": "AE-T07",
+          "rule": "R-HMAC-COVERS-FRAME"
+        }
+      ],
+      "family": "aicent-ae128-fail-closed",
+      "mutant_count": 15,
+      "mutants": [
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N01",
+            "AE-N02"
+          ],
+          "name": "parse: length check dropped"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N03"
+          ],
+          "name": "parse: magic accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N04"
+          ],
+          "name": "parse: version accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N05",
+            "AE-N06"
+          ],
+          "name": "parse: algorithm accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N07"
+          ],
+          "name": "parse: flags check dropped"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N08"
+          ],
+          "name": "parse: standing closed set opened"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N09"
+          ],
+          "name": "parse: reserved ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N10"
+          ],
+          "name": "parse: extension ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N11"
+          ],
+          "name": "parse: organ charset ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-N01",
+            "AE-N02",
+            "AE-N03",
+            "AE-N04",
+            "AE-N05",
+            "AE-N06",
+            "AE-N07",
+            "AE-N08",
+            "AE-N09",
+            "AE-N10",
+            "AE-N11"
+          ],
+          "name": "parse: always accept"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-P01",
+            "AE-N03",
+            "AE-N04",
+            "AE-N05",
+            "AE-N06",
+            "AE-N07",
+            "AE-N08",
+            "AE-N09",
+            "AE-N10",
+            "AE-N11",
+            "AE-T01",
+            "AE-T02",
+            "AE-T03",
+            "AE-T04",
+            "AE-T05",
+            "AE-T06",
+            "AE-T07"
+          ],
+          "name": "parse: always reject"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-T01",
+            "AE-T02",
+            "AE-T03",
+            "AE-T04",
+            "AE-T05",
+            "AE-T06",
+            "AE-T07"
+          ],
+          "name": "verify: always pass"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-P01"
+          ],
+          "name": "verify: always fail"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-P01"
+          ],
+          "name": "verify: zeroing omitted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "AE-P01"
+          ],
+          "name": "verify: coverage stops before standing byte"
+        }
+      ],
+      "mutants_killed": 15,
+      "spec": "draft-li-rttp-iqa-addressing-02 sec. 7.2, 7.2.1"
+    },
+    {
+      "agree_count": 24,
+      "case_count": 24,
+      "cases": [
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "PH-P01",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "PH-P02",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "PH-P03",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N01",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N02",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N03",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N04",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N05",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N06",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N07",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N08",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "PH-N09",
+          "rule": "R-FRAME"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "PH-B01",
+          "rule": "R-ANCHORED-ROUTING"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "PH-B02",
+          "rule": "R-ANCHORED-ROUTING"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "PH-B03",
+          "rule": "R-UNKNOWN-VERB"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "PH-B04",
+          "rule": "R-UNKNOWN-VERB"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "PH-B05",
+          "rule": "R-UNKNOWN-VERB"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "PH-B12",
+          "rule": "R-UNKNOWN-VERB"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "PH-B06",
+          "rule": "R-TTL"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "PH-B07",
+          "rule": "R-TTL"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "PH-B08",
+          "rule": "R-TTL"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "PH-B09",
+          "rule": "R-TTL"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "PH-B10",
+          "rule": "R-TIMESTAMP"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "PH-B11",
+          "rule": "R-TIMESTAMP"
+        }
+      ],
+      "family": "aicent-pulse-header",
+      "mutant_count": 19,
+      "mutants": [
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N01"
+          ],
+          "name": "frame: ACTION_LEN cap removed"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N02"
+          ],
+          "name": "frame: action charset accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N03"
+          ],
+          "name": "frame: padding accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N04"
+          ],
+          "name": "frame: SPEC_REV set opened"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N05"
+          ],
+          "name": "frame: SPEC_REV0 block ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N06"
+          ],
+          "name": "frame: RESERVED ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N07"
+          ],
+          "name": "frame: unknown FLAGS bits accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N08"
+          ],
+          "name": "frame: VERSION_ID ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N09"
+          ],
+          "name": "frame: magic ignored"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-N01",
+            "PH-N02",
+            "PH-N03",
+            "PH-N04",
+            "PH-N05",
+            "PH-N06",
+            "PH-N07",
+            "PH-N08",
+            "PH-N09"
+          ],
+          "name": "frame: always accept"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-P01",
+            "PH-P02",
+            "PH-P03",
+            "PH-N01",
+            "PH-N02",
+            "PH-N03",
+            "PH-N04",
+            "PH-N05",
+            "PH-N06",
+            "PH-N07",
+            "PH-N08",
+            "PH-N09"
+          ],
+          "name": "frame: always reject"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B01"
+          ],
+          "name": "R-ANCHORED-ROUTING: unanchored routed globally"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B03",
+            "PH-B12"
+          ],
+          "name": "R-UNKNOWN-VERB: default operation read as safe"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B12"
+          ],
+          "name": "R-UNKNOWN-VERB: silent admission scored conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B07",
+            "PH-B09"
+          ],
+          "name": "R-TTL: zero-TTL forwarded"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B08"
+          ],
+          "name": "R-TTL: forwarding without decrement accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B10"
+          ],
+          "name": "R-TIMESTAMP: age read as standing"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B01",
+            "PH-B03",
+            "PH-B12",
+            "PH-B06",
+            "PH-B08",
+            "PH-B10"
+          ],
+          "name": "behavior: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "PH-B02",
+            "PH-B04",
+            "PH-B05",
+            "PH-B07",
+            "PH-B09",
+            "PH-B11"
+          ],
+          "name": "behavior: always nonconformant"
+        }
+      ],
+      "mutants_killed": 19,
+      "spec": "draft-li-rttp-iqa-addressing-02 sec. 7.1, 7.1.1, 7.1.2, 4.1, 4.3"
+    },
+    {
+      "agree_count": 26,
+      "case_count": 26,
+      "cases": [
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P01",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P02",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P03",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P04",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P05",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P06",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P07",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "accept",
+          "got": "accept",
+          "id": "UG-P08",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N01",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N02",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N03",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N04",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N05",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N06",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N07",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N08",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N09",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N10",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N11",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N12",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N13",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N14",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N17",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N15",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "reject",
+          "got": "reject",
+          "id": "UG-N16",
+          "rule": "R-GRAMMAR"
+        },
+        {
+          "agree": true,
+          "expect": "ambiguous",
+          "got": "ambiguous",
+          "id": "UG-A01",
+          "rule": "R-GRAMMAR"
+        }
+      ],
+      "family": "aicent-uri-grammar",
+      "mutant_count": 13,
+      "mutants": [
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N01",
+            "UG-N02",
+            "UG-N03",
+            "UG-N17"
+          ],
+          "name": "grammar: uppercase normalised away"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N03",
+            "UG-N04",
+            "UG-N17"
+          ],
+          "name": "grammar: any scheme accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N03",
+            "UG-N05",
+            "UG-N06",
+            "UG-N07",
+            "UG-N08",
+            "UG-N17"
+          ],
+          "name": "grammar: userinfo/port/query/fragment allowed"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N02",
+            "UG-N03",
+            "UG-N07",
+            "UG-N08",
+            "UG-N09",
+            "UG-N10",
+            "UG-N11",
+            "UG-N13",
+            "UG-N14",
+            "UG-N17",
+            "UG-A01"
+          ],
+          "name": "grammar: segment count flexible"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N11"
+          ],
+          "name": "grammar: empty segments allowed"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N12"
+          ],
+          "name": "grammar: charset widened"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N13",
+            "UG-N14"
+          ],
+          "name": "grammar: path flexible"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N15",
+            "UG-N16"
+          ],
+          "name": "grammar: leading-hyphen tightening dropped"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N17"
+          ],
+          "name": "grammar: whitespace stripped silently"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-A01"
+          ],
+          "name": "grammar: percent-encoding always rejected"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-A01"
+          ],
+          "name": "grammar: percent-encoding silently normalised"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-N01",
+            "UG-N02",
+            "UG-N03",
+            "UG-N04",
+            "UG-N05",
+            "UG-N06",
+            "UG-N07",
+            "UG-N08",
+            "UG-N09",
+            "UG-N10",
+            "UG-N11",
+            "UG-N12",
+            "UG-N13",
+            "UG-N14",
+            "UG-N17",
+            "UG-N15",
+            "UG-N16",
+            "UG-A01"
+          ],
+          "name": "grammar: always accept"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "UG-P01",
+            "UG-P02",
+            "UG-P03",
+            "UG-P04",
+            "UG-P05",
+            "UG-P06",
+            "UG-P07",
+            "UG-P08",
+            "UG-N01",
+            "UG-N02",
+            "UG-N03",
+            "UG-N04",
+            "UG-N05",
+            "UG-N06",
+            "UG-N07",
+            "UG-N08",
+            "UG-N09",
+            "UG-N10",
+            "UG-N11",
+            "UG-N12",
+            "UG-N13",
+            "UG-N14",
+            "UG-N15",
+            "UG-N16",
+            "UG-A01"
+          ],
+          "name": "grammar: always reject"
+        }
+      ],
+      "mutants_killed": 13,
+      "spec": "draft-li-rttp-iqa-addressing-02 sec. 4.1-4.2"
+    },
+    {
+      "agree_count": 16,
+      "case_count": 16,
+      "cases": [
+        {
+          "agree": true,
+          "expect": true,
+          "got": true,
+          "id": "RS-D01",
+          "rule": "R-SHARD"
+        },
+        {
+          "agree": true,
+          "expect": true,
+          "got": true,
+          "id": "RS-D02",
+          "rule": "R-SHARD"
+        },
+        {
+          "agree": true,
+          "expect": true,
+          "got": true,
+          "id": "RS-D03",
+          "rule": "R-SHARD"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B01",
+          "rule": "R-ACTION-INDEPENDENT"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "RS-B02",
+          "rule": "R-ACTION-INDEPENDENT"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B03",
+          "rule": "R-AUTHORITY-ONLY"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "RS-B04",
+          "rule": "R-AUTHORITY-ONLY"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B05",
+          "rule": "R-CANONICAL-FORM"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "RS-B06",
+          "rule": "R-CANONICAL-FORM"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B07",
+          "rule": "R-CANONICAL-FORM"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "RS-B08",
+          "rule": "R-CANONICAL-FORM"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "RS-B09",
+          "rule": "R-FULL-AUTHORITY"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B10",
+          "rule": "R-FULL-AUTHORITY"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B11",
+          "rule": "R-DISTINCT-AUTHORITIES"
+        },
+        {
+          "agree": true,
+          "expect": "nonconformant",
+          "got": "nonconformant",
+          "id": "RS-B12",
+          "rule": "R-DISTINCT-AUTHORITIES"
+        },
+        {
+          "agree": true,
+          "expect": "conformant",
+          "got": "conformant",
+          "id": "RS-B13",
+          "rule": "R-DISTINCT-AUTHORITIES"
+        }
+      ],
+      "family": "aicent-route-shard",
+      "mutant_count": 9,
+      "mutants": [
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-D01",
+            "RS-D02",
+            "RS-D03"
+          ],
+          "name": "derive: truncation 8 octets"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-D01",
+            "RS-D02",
+            "RS-D03"
+          ],
+          "name": "derive: no truncation (32 octets)"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-B06",
+            "RS-B08"
+          ],
+          "name": "derive: uppercase lowercased before hashing"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-B01",
+            "RS-B02"
+          ],
+          "name": "derive: action participates"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-B04"
+          ],
+          "name": "derive: scheme participates"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-B09",
+            "RS-B10"
+          ],
+          "name": "derive: intent segment alone"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-B11",
+            "RS-B12",
+            "RS-B13"
+          ],
+          "name": "derive: display form routing accepted"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-B01",
+            "RS-B02",
+            "RS-B03",
+            "RS-B04",
+            "RS-B05",
+            "RS-B06",
+            "RS-B07",
+            "RS-B08",
+            "RS-B09",
+            "RS-B10",
+            "RS-B11",
+            "RS-B12",
+            "RS-B13"
+          ],
+          "name": "property rules: always conformant"
+        },
+        {
+          "killed": true,
+          "killed_by": [
+            "RS-D01",
+            "RS-D02",
+            "RS-D03",
+            "RS-B01",
+            "RS-B03",
+            "RS-B05",
+            "RS-B07",
+            "RS-B10",
+            "RS-B11",
+            "RS-B13"
+          ],
+          "name": "property rules: always nonconformant"
+        }
+      ],
+      "mutants_killed": 9,
+      "spec": "draft-li-rttp-iqa-addressing-02 sec. 4.4, 4.2, 9.1"
+    }
+  ],
+  "mode": "author-produced (Mode A): the author's own checkers over the author's own vectors",
+  "summary": {
+    "agree": 125,
+    "cases": 125,
+    "mutants": 94,
+    "mutants_killed": 94
+  },
+  "tool": "family_runner.py (Aicent-Stack/conformance family-runner)"
+}
