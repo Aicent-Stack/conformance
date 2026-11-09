@@ -7,7 +7,7 @@ This is the central registry of sealed, byte-replayable conformance run records 
 | folder | lab / project | contents |
 |---|---|---|
 | [`lra-runner/`](lra-runner/) | **Aicent Stack** (RTTP & IQA, ours) — lease-revocation-axes family | our own runner over our own family (lab PRs #187 / #194) |
-| [`candidates/`](candidates/) | **Aicent Stack** (RTTP & IQA, ours) — aicent-grant-ref and aicent-lease-boundary families | our vector families, merged lab mainline (PRs #210 / #212) |
+| [`candidates/`](candidates/) | **Aicent Stack** (RTTP & IQA, ours) — six vector families | our vector families; two merged into the lab mainline (PRs #210 / #212), four filed as candidates there |
 | [`interop/`](interop/) | **Aicent Stack** (RTTP & IQA, ours) | clarification records from the lab interop filings |
 | [`aae-runner/`](aae-runner/) | **MoltyCel** (Lars Kersten Kroehl) — moltycel-aae-vectors | our independent run of their pipeline (lab PR #215) |
 | [`icam-runner/`](icam-runner/) | **ICAM** (Nika Novak, danyka-icam) — icam-temporal-derivation | our independent runner over their candidate (lab PR #218) |
@@ -40,10 +40,14 @@ The specification under test is the combined Individual Submission Internet-Draf
 
 ## Vector families
 
-Two vector families of our own authorship are merged into the lab's mainline as candidates; each anchors every expectation to published sections of the specification under test and ships with its own mutation battery:
+Six vector families of our own authorship live under `candidates/`; each anchors every expectation to published sections of the specification under test and ships with its own mutation battery. Two are merged into the lab's mainline; four are filed as candidates there. Every family has a sealed recorded-run report page under [iqa.org/conformance/](https://iqa.org/conformance/), produced by the shared harness [`family_runner.py`](family-runner/family_runner.py) — author-produced, deterministic recorded output (no timestamps, no paths, byte-replayable); across the six families: 125/125 cases agree, 94/94 mutants killed, exit 0.
 
 - [`candidates/aicent-grant-ref/`](candidates/aicent-grant-ref/) — the response semantics of an attestation answer: which refusal value the closed vocabulary owes, when the observation member must be null, and which structure members every response carries. Merged upstream as [PR #210](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/210) (2026-11-03). Family page: [iqa.org/conformance/aicent-grant-ref/](https://iqa.org/conformance/aicent-grant-ref/).
 - [`candidates/aicent-lease-boundary/`](candidates/aicent-lease-boundary/) — the lease of an attestation answer: which boundary convention an implementation may declare and apply at the lease instant, what an expired lease still owes, how the declared answer mode shapes the refusal when the organ cannot be reached, and which expiry a verifier checks. Merged upstream as [PR #212](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/212) (2026-11-03). Family page: [iqa.org/conformance/aicent-lease-boundary/](https://iqa.org/conformance/aicent-lease-boundary/).
+- [`candidates/aicent-ae128-fail-closed/`](candidates/aicent-ae128-fail-closed/) — byte-level fail-closed discipline of the attestation envelope: the parse-time rejection rules applied before any cryptographic work, the canonical HMAC coverage rule, and the published test vector reproduced byte for byte. Family page: [iqa.org/conformance/aicent-ae128-fail-closed/](https://iqa.org/conformance/aicent-ae128-fail-closed/).
+- [`candidates/aicent-pulse-header/`](candidates/aicent-pulse-header/) — the pulse header, wire and behavior: the fixed 128-octet frame layout, the extension-block rules, and the time-and-order semantics (TTL forwarding, timestamp age against standing). Family page: [iqa.org/conformance/aicent-pulse-header/](https://iqa.org/conformance/aicent-pulse-header/).
+- [`candidates/aicent-uri-grammar/`](candidates/aicent-uri-grammar/) — the rttp URI grammar: the ABNF (three dot-separated segments, hash-intent versus name-intent, single-segment action) and the exclusions, with one disclosed tightening and one licensed ambiguous edge. Family page: [iqa.org/conformance/aicent-uri-grammar/](https://iqa.org/conformance/aicent-uri-grammar/).
+- [`candidates/aicent-route-shard/`](candidates/aicent-route-shard/) — the ROUTE_SHARD derivation: SHA-256 over the ASCII of the canonical authority truncated to 16 octets, the authority-only and canonical-form boundaries, and the display-form red line. Family page: [iqa.org/conformance/aicent-route-shard/](https://iqa.org/conformance/aicent-route-shard/).
 
 ## External evaluations
 
