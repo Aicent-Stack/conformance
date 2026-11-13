@@ -632,8 +632,8 @@
       "spec": "draft-li-rttp-iqa-addressing-02 sec. 6.1-6.3, 7.2"
     },
     {
-      "agree_count": 19,
-      "case_count": 19,
+      "agree_count": 21,
+      "case_count": 21,
       "cases": [
         {
           "agree": true,
@@ -783,6 +783,30 @@
         {
           "agree": true,
           "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "flags",
+            "verify": "not_reached"
+          },
+          "id": "AE-N12",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
+            "parse": "reject"
+          },
+          "got": {
+            "parse": "organ",
+            "verify": "not_reached"
+          },
+          "id": "AE-N13",
+          "rule": "R-PARSE-FAIL-CLOSED"
+        },
+        {
+          "agree": true,
+          "expect": {
             "parse": "accept",
             "verify": "fail"
           },
@@ -908,7 +932,8 @@
         {
           "killed": true,
           "killed_by": [
-            "AE-N07"
+            "AE-N07",
+            "AE-N12"
           ],
           "name": "parse: flags check dropped"
         },
@@ -936,7 +961,8 @@
         {
           "killed": true,
           "killed_by": [
-            "AE-N11"
+            "AE-N11",
+            "AE-N13"
           ],
           "name": "parse: organ charset ignored"
         },
@@ -953,7 +979,9 @@
             "AE-N08",
             "AE-N09",
             "AE-N10",
-            "AE-N11"
+            "AE-N11",
+            "AE-N12",
+            "AE-N13"
           ],
           "name": "parse: always accept"
         },
@@ -970,6 +998,8 @@
             "AE-N09",
             "AE-N10",
             "AE-N11",
+            "AE-N12",
+            "AE-N13",
             "AE-T01",
             "AE-T02",
             "AE-T03",
@@ -1930,8 +1960,8 @@
   ],
   "mode": "author-produced (Mode A): the author's own checkers over the author's own vectors",
   "summary": {
-    "agree": 125,
-    "cases": 125,
+    "agree": 127,
+    "cases": 127,
     "mutants": 94,
     "mutants_killed": 94
   },
