@@ -3,6 +3,6 @@ Runner host environment (2026-11-08)
 python_version : 3.14.2
 platform       : Windows-11-10.0.26300-SP0
 sys.platform   : win32
-stdlib only    : the independent runner imports hashlib, json, sys, pathlib (no third-party packages)
+stdlib only    : the runner imports hashlib, json, sys, pathlib (no third-party packages)
 network        : none during verification (candidate files fetched from GitHub raw beforehand;
                   every run recorded in run-output.txt is offline)

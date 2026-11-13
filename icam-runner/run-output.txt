@@ -1,4 +1,4 @@
-$ python3 -I check.py vectors.json
+$ python3 -I vendor/check.py vendor/vectors.json
 PASS TD-B01 [reliance/normative] expected=fresh actual=fresh
 PASS TD-B02 [reliance/normative] expected=fresh actual=fresh
 PASS TD-B03 [reliance/normative] expected=expired actual=expired
@@ -25,7 +25,7 @@ PASS TD-B07 [reliance/normative] expected=fresh actual=fresh
 PASS TD-B08 [reliance/normative] expected=expired actual=expired
 SUMMARY 24/24 agree; author-produced fixture consistency only
 
-$ python3 -I mutate.py
+$ python3 -I vendor/mutate.py
 KILLED trust-unverified-boundary-flag by TD-N01,TD-N02,TD-N03,TD-N04,TD-N06,TD-X04,TD-X05,TD-X06,TD-B08
 KILLED always-fresh-at-equality by TD-B05,TD-N03,TD-X03
 KILLED always-expired-at-equality by TD-B02,TD-N04,TD-X03
@@ -36,10 +36,10 @@ KILLED missing-expiry-fails-open by TD-X05
 KILLED wire-frame-equality-rejected by TD-W02,TD-W04
 SUMMARY 8/8 mutants killed (author-produced)
 
-$ python3 -I metamorphic.py
+$ python3 -I vendor/metamorphic.py
 PASS 120 flag-substitution invariance checks; equality wire-time gate separate (author-produced)
 
-$ python3 -I icam_runner.py candidate/vectors.json run-output.json   (independent runner)
+$ python3 -I icam_runner.py vendor/vectors.json run-output.json   (Mode B runner)
 PASS TD-B01 [reliance/normative] expected=fresh                  observed=fresh                  
 PASS TD-B02 [reliance/normative] expected=fresh                  observed=fresh                  
 PASS TD-B03 [reliance/normative] expected=expired                observed=expired                
@@ -64,12 +64,12 @@ PASS TD-W03 [wire_time_gate_only/normative] expected=time_gate_reject       obse
 PASS TD-W04 [wire_time_gate_only/normative] expected=time_gate_pass         observed=time_gate_pass         
 PASS TD-B07 [reliance/normative] expected=fresh                  observed=fresh                  
 PASS TD-B08 [reliance/normative] expected=expired                observed=expired                
-SUMMARY 24/24 agree (independent runner, non-author-produced)
+SUMMARY 24/24 agree (author-produced Mode B runner)
 MUTANT trusts-advisory-flag           killed by TD-N01,TD-N02,TD-N03,TD-N04,TD-X04,TD-X06,TD-B08
 MUTANT always-fresh                   killed by TD-B03,TD-B05,TD-B06,TD-N01,TD-N03,TD-N05,TD-X02,TD-X03,TD-X04,TD-X05,TD-X06,TD-B08
 MUTANT always-expired                 killed by TD-B01,TD-B02,TD-B04,TD-N02,TD-N04,TD-N06,TD-X01,TD-X03,TD-X04,TD-X05,TD-X06,TD-B07
-MUTANT wire-gate-rejects-equality     killed by TD-B01,TD-B02,TD-B03,TD-B04,TD-B05,TD-B06,TD-N01,TD-N02,TD-N03,TD-N04,TD-N05,TD-N06,TD-X01,TD-X02,TD-X03,TD-X06,TD-W02,TD-W04,TD-B07,TD-B08
+MUTANT wire-gate-rejects-equality     killed by TD-W02,TD-W04
 MUTANT undeclared-boundary-inclusive  killed by TD-X03
 MUTANT hardcoded-120s-window          killed by TD-B03,TD-B05,TD-B06,TD-N01,TD-N03,TD-N05,TD-X02,TD-X03,TD-X06,TD-B07,TD-B08
 MUTATION SUMMARY 6/6 killed (independent battery)
-run output written: E:\WEB\_deploy\_icam_1108\icam-runner\run-output.json
+run output written: run-output.json

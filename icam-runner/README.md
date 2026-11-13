@@ -1,6 +1,6 @@
 # icam-runner
 
-Independent (non-author-produced) runner for the **icam-temporal-derivation**
+Author-produced Mode B runner over ICAM's vectors for the **icam-temporal-derivation**
 candidate (lab PR #218, head `72a0f72`), built and run by Aicent Stack.
 
 - Operator: ShaoBao Li (Lee) / Aicent Stack (RTTP CRI 27 / IQA CRI 28)
@@ -26,7 +26,8 @@ byte; the payload also embeds the sha256 of every frozen file under
 `SHA256SUMS.txt` pins the package files. `run-output.txt` is the whole-session
 console recording; `ENVIRONMENT.txt` records the run environment. See
 `RUN-REPORT-2026-11-08.md` for scope, limitations, and the classification note.
-This is a run record by a non-author operator, not a merge vote; the lab
+This is a Mode B run record by an operator distinct from the candidate's
+author, not a merge vote; the lab
 certifies nothing and maintainer decisions at the lab are separate from this
 record.
 
