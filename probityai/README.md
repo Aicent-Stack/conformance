@@ -14,6 +14,7 @@ the venue's side; all venue-side changes are made upstream by the venue.
 - 2026-11-07 16:27 — [`483/`](483/) — our confirmation comment: corpusDigest `372fe137c3ce46096ffa0f8d1348d907219189900669a5badee4578e0040ad65`, provenance block and spec pin all match
 - 2026-11-07 16:48 — [`492/`](492/) — our registry entry for `predicate/v1/refusal-reason-priority` filed per the RFC's seven items
 - 2026-11-07 18:22 — [`483/`](483/) — PR #483 merged; [`453/`](453/) closed as completed one minute later
+- 2026-11-13T14:50:24Z — [`585/`](585/) — we filed issue #585: registration candidate for the AE-128 attestation envelope (draft -02 sec. 7.2/7.2.1), the object the refusal answers are answers over
 - open — #492 comments open until 20 Nov; [`494/`](494/) roadmap pending discussion
 
 ## Node index
@@ -25,3 +26,4 @@ the venue's side; all venue-side changes are made upstream by the venue.
 | [`483/`](483/) | PR | merged | the refusal-reason-priority corpus (33 members) built from our records; spec-pinned, digest-confirmed by us |
 | [`492/`](492/) | issue | open | predicate-registry RFC; our registry entry filed, envelope-shape question pending |
 | [`494/`](494/) | issue | open | suites roadmap; the refusal vocabulary is planned for release 0.38.0 |
+| [`585/`](585/) | issue | open | our AE-128 envelope registration candidate; scope question asked first, corpus material offered, no vendoring |
