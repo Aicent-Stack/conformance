@@ -1,9 +1,11 @@
 <!--
-Archived from https://github.com/probityai/agent-evidence-vectors/issues/585 on 2026-11-13. The text below the marker is the issue body verbatim, byte-exact as
-retrieved, LF-normalized for storage; sha256 of the archived text (the verbatim
-section as stored, below the marker): 72970bc7cf68fedea15989b303c44f5d56a8c6242bb8055119aa8c3f184654d8.-->
+Archived from https://github.com/probityai/agent-evidence-vectors/issues/585 on 2026-11-14. First archived 2026-11-13
+(sha256 of that generation: 72970bc7cf68fedea15989b303c44f5d56a8c6242bb8055119aa8c3f184654d8); the body was
+edited the same day at 14:57:44Z to append the Cross-references section (repository archive + sealed family
+report). The text below the marker is the issue body verbatim as it now stands, byte-exact as retrieved,
+LF-normalized for storage; sha256 of the archived text (the verbatim section as stored, below the marker): 14e0645b4a873a5de351d838faf2bbe9146b32dbb4dd9b50103df1cd16a705b9.-->
 
-Issue #585 verbatim archive — sha256 of archived text: 72970bc7cf68fedea15989b303c44f5d56a8c6242bb8055119aa8c3f184654d8
+Issue #585 verbatim archive (post-edit generation) — sha256 of archived text: 14e0645b4a873a5de351d838faf2bbe9146b32dbb4dd9b50103df1cd16a705b9
 ================================================================
 
 Following #544 and the `predicate/v1/refusal-reason-priority` entry: that entry works because the normative set and its order stay in the draft, owned and confirmed by its author, while this repository carries the corpus, the rails, and the page. The same draft fixes a second normative object that is evidence-shaped in exactly the same way, and it is the object those refusal answers are answers **over**: the fixed 128-octet attestation envelope of Section 7.2.
@@ -49,3 +51,8 @@ Offered as material, not prescribed — the corpus design is this repository's c
 - Naming is yours: `attestation-envelope` is a suggestion in this repository's semantic naming style; the draft itself calls the object the attestation envelope (AE-128).
 
 No vendoring is required either way: the layout and the closed set stay normative in the draft, and the entry would name it the way the refusal entry does.
+
+## Cross-references
+
+- Verbatim archive of this issue, kept by the emitter: <https://github.com/Aicent-Stack/conformance/tree/main/probityai/585/>
+- The AE-128 family's sealed live report: <https://iqa.org/conformance/aicent-ae128-fail-closed/>

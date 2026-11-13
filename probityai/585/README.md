@@ -21,3 +21,8 @@ Sources in the issue: the sealed family report at <https://iqa.org/conformance/a
 and the same vectors as a candidate in the LFDT lab ([PR #221](https://github.com/Agent-Authority-Conformance/aps-conformance-suite/pull/221), open at archive time).
 HMAC key material stays with the verifier; corpus records would carry frame bytes and verification
 outcomes, not keys. Naming is the venue's call; `attestation-envelope` is offered as a suggestion.
+
+Same-day edit (2026-11-13T14:57:44Z): a Cross-references section was appended to the issue body —
+the verbatim archive of the issue at [`../585/`](./) plus the sealed family report. The archive below
+[`ISSUE-RECORDS.md`](ISSUE-RECORDS.md) was refreshed to the post-edit generation; the first-generation
+sha256 is recorded in its header.
