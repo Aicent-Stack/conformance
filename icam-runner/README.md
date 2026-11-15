@@ -8,7 +8,7 @@ candidate (lab PR #218, head `72a0f72`), built and run by Aicent Stack.
   (TXT sha256 02491c5a59d1e7471be04e8e0d4933dfc22ce19f9b054ead0aa449d6b4485044),
   byte-verified against the vendor-pinned value in the candidate's own
   CANDIDATE.md
-- Result: 24/24 vectors agree with the candidate's expectations; independent
+- Result: 24/24 vectors agree with the candidate's expectations; the runner's own
   mutation battery 6/6 killed; two layers kept separate (18 DERIVE, 4
   WIRE_TIME_GATE, 2 nondefault-window)
 
@@ -18,7 +18,7 @@ candidate (lab PR #218, head `72a0f72`), built and run by Aicent Stack.
 python3 -I icam_runner.py vendor/vectors.json run-output.json
 ```
 
-Exit 0 means every vector agrees and every mutant in the independent battery
+Exit 0 means every vector agrees and every mutant in the runner's own battery
 is killed. A rerun must reproduce the recorded `run-output.json` byte for
 byte; the payload also embeds the sha256 of every frozen file under
 `vendor/`, so any drift in the vendored candidate inputs breaks the replay.
@@ -37,15 +37,17 @@ Full report: [iqa.org/conformance/icam-runner/](https://iqa.org/conformance/icam
 
 The measurement is sealed per the IQA release discipline:
 
-- Tarball: `icam-runner-20261108a.tar.gz` (11,996 bytes), sha256
-  698dfa08223565fd1424984f894ddd7d000a456ed18877c5023f86dc166630e2 —
-  [download](https://iqa.org/conformance/files/icam-runner-20261108a.tar.gz)
-- Dual addresses: `rttp://698dfa08.conformance.iqa` ·
-  `iqa://698dfa08223565fd1424984f894ddd7d.forge.iqa` — resolvable through the
-  public resolvers ([rttp.com/open/](https://rttp.com/open/) ·
+- Current cut: `icam-runner-20261115a.tar.gz` — the download link, the full
+  artifact table, each cut's SHA-256 and its derived dual address pair
+  (`rttp://<a8>.conformance.iqa` · `iqa://<a32>.forge.iqa`) live on the
+  [report page](https://iqa.org/conformance/icam-runner/), resolvable through
+  the public resolvers ([rttp.com/open/](https://rttp.com/open/) ·
   [iqa.org/open/](https://iqa.org/open/))
-- Bundle: version `2026-11-08-icam-run`, appended to the release-attestations
-  bundles, dual-site byte-identical at
+- Earlier cuts remain verifiable append-only — `icam-runner-20261108a.tar.gz`
+  (sha256 698dfa08223565fd1424984f894ddd7d000a456ed18877c5023f86dc166630e2)
+  among them; nothing superseded on the artifact line
+- Bundle: every cut is appended to the release-attestations bundles
+  (first as version `2026-11-08-icam-run`), dual-site byte-identical at
   [iqa.org/attestations/](https://iqa.org/attestations/) and
   [rttp.com/attestations/](https://rttp.com/attestations/)
 
@@ -63,5 +65,5 @@ touches `CANDIDATE.md`, `CHECKSUMS.sha256` and four `case_status` metadata
 lines in `vectors.json` (`normative` → `convention_specific`); the 24 case
 inputs and every expectation are byte-identical. This record stays pinned to
 `72a0f72` — the vendored inputs under `vendor/` are byte-identical to that
-head, so the recorded run and the independent runner's agreement carry over
+head, so the recorded run and the Mode B runner's agreement carry over
 unchanged.

@@ -24,11 +24,11 @@ Stated rather than smoothed over, per the lab's [CONTRIBUTING.md](https://github
 | candidate harness reproduction | `check.py` / `mutate.py` / `metamorphic.py` (run as-is, unchanged) | thin invocation | independent (implementation not ours) | 24/24 fixtures · 8/8 mutants · 120 metamorphic · checksums 6/6 · exit 0 |
 | draft-rule recomputation | `icam_runner.py` (this package) | B — alternate recomputation | author-produced Mode B; vectors not ours (see Classification) | 24/24 agree · own battery 6/6 killed · exit 0 |
 
-## Mutation battery — independent, 6/6 killed, none survived
+## Mutation battery — the runner's own, 6/6 killed, none survived
 
 Ours, distinct from the candidate's author-produced 8 (reproduced as-is above): Each mutant is scored only against cases of the rule it changes (lab review 2026-11-14): the wire-gate mutant is scored against the four WIRE_TIME_GATE cases and is killed by TD-W02 and TD-W04; the five DERIVE mutants keep their original kill sets.
 
-| Mutant (independent battery) | Killed by |
+| Mutant (the runner's own battery) | Killed by |
 |---|---|
 | `always-expired` | TD-B01, TD-B02, TD-B04, TD-N02, TD-N04, TD-N06, TD-X01, TD-X03, TD-X04, TD-X05, TD-X06, TD-B07 |
 | `always-fresh` | TD-B03, TD-B05, TD-B06, TD-N01, TD-N03, TD-N05, TD-X02, TD-X03, TD-X04, TD-X05, TD-X06, TD-B08 |
@@ -39,11 +39,11 @@ Ours, distinct from the candidate's author-produced 8 (reproduced as-is above): 
 
 ## Exit status
 
-The process exit code is `0` only when every vector agrees and every mutant in the independent battery is killed, and `1` otherwise.
+The process exit code is `0` only when every vector agrees and every mutant in the runner's own battery is killed, and `1` otherwise.
 
 ## Negative-path self-check (executed, not asserted)
 
-Findings on the corpus: none — zero failed checks, no suspected defective vector. Operator-side finding (resolved before recording): the first draft of the independent runner ordered the invalid-convention precondition check after the time comparison; case TD-X06 (expected `invalid_convention`) caught the defect on the first execution — the check was moved before any time comparison and the recorded run is the fixed implementation. The negative-path machinery fired for real, which is what it is for.
+Findings on the corpus: none — zero failed checks, no suspected defective vector. Operator-side finding (resolved before recording): the first draft of the runner ordered the invalid-convention precondition check after the time comparison; case TD-X06 (expected `invalid_convention`) caught the defect on the first execution — the check was moved before any time comparison and the recorded run is the fixed implementation. The negative-path machinery fired for real, which is what it is for.
 
 ## Determinism and cost
 
@@ -98,49 +98,7 @@ Fresh reruns produce byte-identical output; the recorded output (`run-output.jso
 
 Whole-session console recording — the candidate's three scripts as-is, then the Mode B runner:
 
-```
-$ python3 -I vendor/check.py vendor/vectors.json
-PASS TD-B01 [reliance/normative] expected=fresh actual=fresh
-PASS TD-B02 [reliance/normative] expected=fresh actual=fresh
-PASS TD-B03 [reliance/normative] expected=expired actual=expired
-PASS TD-B04 [reliance/normative] expected=fresh actual=fresh
-PASS TD-B05 [reliance/normative] expected=expired actual=expired
-PASS TD-B06 [reliance/normative] expected=expired actual=expired
-PASS TD-N01 [reliance/normative] expected=expired actual=expired
-PASS TD-N02 [reliance/normative] expected=fresh actual=fresh
-PASS TD-N03 [reliance/normative] expected=expired actual=expired
-PASS TD-N04 [reliance/normative] expected=fresh actual=fresh
-PASS TD-N05 [reliance/normative] expected=expired actual=expired
-PASS TD-N06 [reliance/normative] expected=fresh actual=fresh
-PASS TD-X01 [reliance/normative] expected=fresh actual=fresh
-PASS TD-X02 [reliance/normative] expected=expired actual=expired
-PASS TD-X03 [reliance/interpretive] expected=boundary_undetermined actual=boundary_undetermined
-PASS TD-X04 [reliance/local_precondition] expected=insufficient_input actual=insufficient_input
-PASS TD-X05 [reliance/local_precondition] expected=insufficient_input actual=insufficient_input
-PASS TD-X06 [reliance/local_precondition] expected=invalid_convention actual=invalid_convention
-PASS TD-W01 [wire_time_gate_only/normative] expected=time_gate_pass actual=time_gate_pass
-PASS TD-W02 [wire_time_gate_only/normative] expected=time_gate_pass actual=time_gate_pass
-PASS TD-W03 [wire_time_gate_only/normative] expected=time_gate_reject actual=time_gate_reject
-PASS TD-W04 [wire_time_gate_only/normative] expected=time_gate_pass actual=time_gate_pass
-PASS TD-B07 [reliance/normative] expected=fresh actual=fresh
-PASS TD-B08 [reliance/normative] expected=expired actual=expired
-SUMMARY 24/24 agree; author-produced fixture consistency only
-
-$ python3 -I vendor/mutate.py
-KILLED trust-unverified-boundary-flag by TD-N01,TD-N02,TD-N03,TD-N04,TD-N06,TD-X04,TD-X05,TD-X06,TD-B08
-KILLED always-fresh-at-equality by TD-B05,TD-N03,TD-X03
-KILLED always-expired-at-equality by TD-B02,TD-N04,TD-X03
-KILLED reversed-time-order by TD-B01,TD-B03,TD-B04,TD-B06,TD-N01,TD-N02,TD-N05,TD-N06,TD-X01,TD-X02,TD-X06,TD-B07,TD-B08
-KILLED assume-inclusive-undeclared by TD-X03
-KILLED missing-clock-fails-open by TD-X04
-KILLED missing-expiry-fails-open by TD-X05
-KILLED wire-frame-equality-rejected by TD-W02,TD-W04
-SUMMARY 8/8 mutants killed (author-produced)
-
-$ python3 -I vendor/metamorphic.py
-PASS 120 flag-substitution invariance checks; equality wire-time gate separate (author-produced)
-
-$ python3 -I icam_runner.py vendor/vectors.json run-output.json   (Mode B runner)
+```VENDOR PIN OK 6/6 (CHECKSUMS.sha256)
 PASS TD-B01 [reliance/normative] expected=fresh                  observed=fresh                  
 PASS TD-B02 [reliance/normative] expected=fresh                  observed=fresh                  
 PASS TD-B03 [reliance/normative] expected=expired                observed=expired                
@@ -172,13 +130,13 @@ MUTANT always-expired                 killed by TD-B01,TD-B02,TD-B04,TD-N02,TD-N
 MUTANT wire-gate-rejects-equality     killed by TD-W02,TD-W04
 MUTANT undeclared-boundary-inclusive  killed by TD-X03
 MUTANT hardcoded-120s-window          killed by TD-B03,TD-B05,TD-B06,TD-N01,TD-N03,TD-N05,TD-X02,TD-X03,TD-X06,TD-B07,TD-B08
-MUTATION SUMMARY 6/6 killed (independent battery)
+MUTATION SUMMARY 6/6 killed (the runner's own battery)
 run output written: run-output.json
 ```
 
 ## Archive of record
 
-The complete artifact (runner, vendored candidate inputs, recorded outputs) is pinned and organ-sealed: `icam-runner-20261108a.tar.gz` (11,996 bytes), sha256 `698dfa08223565fd1424984f894ddd7d000a456ed18877c5023f86dc166630e2` — [download](https://iqa.org/conformance/files/icam-runner-20261108a.tar.gz). The artifact carries two addresses derived from its own digest — one per sister scheme: [`rttp://698dfa08.conformance.iqa`](https://rttp.com/open/?uri=rttp://698dfa08.conformance.iqa) (the question, WHERE+WHEN) and [`iqa://698dfa08223565fd1424984f894ddd7d.forge.iqa`](https://iqa.org/open/?uri=iqa://698dfa08223565fd1424984f894ddd7d.forge.iqa) (the answer, WHETHER — the exact organ-sealed subject). Appended to the release-attestations bundles as version `2026-11-08-icam-run`, dual-site byte-identical at [iqa.org/attestations/](https://iqa.org/attestations/) and [rttp.com/attestations/](https://rttp.com/attestations/). Full report page: [iqa.org/conformance/icam-runner/](https://iqa.org/conformance/icam-runner/). The copy of this report inside the sealed tarball is the measurement-event snapshot; this repository copy is the living document (classification wording aligned with the lab's vocabulary — recorded 2026-11-08; relabeled author-produced Mode B and mutation scoring corrected to rule scope per lab review, 2026-11-14; verbatim output re-embedded) — a digest cannot appear inside the bytes it hashes.
+The complete artifact (runner, vendored candidate inputs, recorded outputs) is pinned and organ-sealed per cut; every cut — starting with `icam-runner-20261108a.tar.gz` (sha256 `698dfa08223565fd1424984f894ddd7d000a456ed18877c5023f86dc166630e2`) — is listed with downloads on the [report page](https://iqa.org/conformance/icam-runner/). Each cut carries two addresses derived from its own digest — one per sister scheme: `rttp://<a8>.conformance.iqa` (the question, WHERE+WHEN) and `iqa://<a32>.forge.iqa` (the answer, WHETHER — the exact organ-sealed subject); the resolvable links live on the report page. Every cut is appended to the release-attestations bundles (first as version `2026-11-08-icam-run`), dual-site byte-identical at [iqa.org/attestations/](https://iqa.org/attestations/) and [rttp.com/attestations/](https://rttp.com/attestations/). Full report page: [iqa.org/conformance/icam-runner/](https://iqa.org/conformance/icam-runner/). The copy of this report inside the sealed tarball is the measurement-event snapshot; this repository copy is the living document (classification wording aligned with the lab's vocabulary — recorded 2026-11-08; relabeled author-produced Mode B and mutation scoring corrected to rule scope per lab review, 2026-11-14; verbatim output re-embedded; vendor-pin gate added before scoring (fail closed) and remaining independence wording aligned with the author-produced Mode B label per lab review round two, 2026-11-15) — a digest cannot appear inside the bytes it hashes.
 
 ## Citation
 
