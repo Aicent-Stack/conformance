@@ -80,6 +80,46 @@ def wire_time_gate(inp):
 RULES = {'DERIVE': derive_reliance, 'WIRE_TIME_GATE': wire_time_gate}
 
 
+def _verify_vendor_pin(vectors_path):
+    """Fail closed before any scoring: every file listed in the candidate's
+    own CHECKSUMS.sha256 must hash to its recorded digest, the scored input
+    must itself be named by the manifest, and the manifest must name
+    vectors.json (lab review: the vendor pin check is structural, not
+    procedural -- an unlisted input or an empty manifest must not score)."""
+    vdir = Path(vectors_path).parent
+    sums = vdir / 'CHECKSUMS.sha256'
+    if not sums.exists():
+        print('VENDOR PIN MISSING: no CHECKSUMS.sha256 next to the vectors')
+        return False
+    listed, fails = [], []
+    for line in sums.read_text(encoding='utf-8').splitlines():
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+        digest, _, fname = line.partition(' ')
+        fname = fname.strip().lstrip('*')
+        if not digest or not fname:
+            continue
+        listed.append(fname)
+        p = vdir / fname
+        actual = hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
+        if actual != digest:
+            fails.append(fname)
+    if fails:
+        for fname in fails:
+            print('VENDOR PIN MISMATCH: %s' % fname)
+        return False
+    if 'vectors.json' not in listed:
+        print('VENDOR PIN INCOMPLETE: CHECKSUMS.sha256 does not name vectors.json')
+        return False
+    scored = Path(vectors_path).name
+    if scored not in listed:
+        print('VENDOR PIN UNLISTED: %s is not named in CHECKSUMS.sha256' % scored)
+        return False
+    print('VENDOR PIN OK %d/%d (CHECKSUMS.sha256)' % (len(listed), len(listed)))
+    return True
+
+
 def run(vectors):
     records, failures = [], 0
     for c in vectors['cases']:
@@ -93,7 +133,7 @@ def run(vectors):
     return records, failures
 
 
-# --- independent mutation battery (ours, distinct from the candidate's) ---
+# --- the runner's own mutation battery (distinct from the candidate's) ---
 # each mutant name maps to the rule whose logic it perturbs
 MUTANT_RULES = {
     'trusts-advisory-flag': 'DERIVE',
@@ -169,6 +209,8 @@ def main(argv):
     vectors_path = argv[1] if len(argv) > 1 else None
     out_path = argv[2] if len(argv) > 2 else None
     doc = json.loads(Path(vectors_path).read_text(encoding='utf-8'))
+    if not _verify_vendor_pin(vectors_path):
+        return 1
     records, failures = run(doc)
     for r in records:
         print('%s %-6s [%s/%s] expected=%-22s observed=%-22s %s'
@@ -181,7 +223,7 @@ def main(argv):
     killed = sum(1 for v in mut.values() if v)
     for name, by in mut.items():
         print('MUTANT %-30s %s' % (name, ('killed by ' + ','.join(by)) if by else 'SURVIVED'))
-    print('MUTATION SUMMARY %d/%d killed (independent battery)' % (killed, len(mut)))
+    print("MUTATION SUMMARY %d/%d killed (the runner's own battery)" % (killed, len(mut)))
 
     if out_path:
         vendor_files = {}
