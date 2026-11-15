@@ -9,18 +9,22 @@ candidate (lab PR #218, head `72a0f72`), built and run by Aicent Stack.
   byte-verified against the vendor-pinned value in the candidate's own
   CANDIDATE.md
 - Result: 24/24 vectors agree with the candidate's expectations; the runner's own
-  mutation battery 6/6 killed; two layers kept separate (18 DERIVE, 4
-  WIRE_TIME_GATE, 2 nondefault-window)
+  mutation battery 6/6 killed; two layers kept separate (20 DERIVE cases, including two
+  nondefault-window cases, plus 4 WIRE_TIME_GATE)
 
 ## Run
 
 ```
-python3 -I icam_runner.py vendor/vectors.json run-output.json
+python3 -I icam_runner.py vendor/vectors.json rerun-output.json
 ```
 
 Exit 0 means every vector agrees and every mutant in the runner's own battery
 is killed. A rerun must reproduce the recorded `run-output.json` byte for
-byte; the payload also embeds the sha256 of every frozen file under
+byte. Write your rerun to a different file, as in the command above, so
+the committed record is preserved untouched, then compare the two
+explicitly — for example `cmp run-output.json rerun-output.json` — and
+treat the run as reproduced only if the comparison reports no
+difference. The payload also embeds the sha256 of every frozen file under
 `vendor/`, so any drift in the vendored candidate inputs breaks the replay.
 
 `SHA256SUMS.txt` pins the package files. `run-output.txt` is the whole-session
@@ -37,7 +41,7 @@ Full report: [iqa.org/conformance/icam-runner/](https://iqa.org/conformance/icam
 
 The measurement is sealed per the IQA release discipline:
 
-- Current cut: `icam-runner-20261115a.tar.gz` — the download link, the full
+- Current cut: `icam-runner-20261116a.tar.gz` — the download link, the full
   artifact table, each cut's SHA-256 and its derived dual address pair
   (`rttp://<a8>.conformance.iqa` · `iqa://<a32>.forge.iqa`) live on the
   [report page](https://iqa.org/conformance/icam-runner/), resolvable through
@@ -54,7 +58,7 @@ The measurement is sealed per the IQA release discipline:
 ## Citation
 
 - Runner: `icam_runner.py` — https://github.com/Aicent-Stack/conformance (`icam-runner/`)
-- Operator: Lee / Aicent Stack (ShaoBao Li, @Aicent-com), RTTP CRI 27 · IQA CRI 28
+- Citation: `icam_runner.py` · Aicent-Stack/conformance · ShaoBao Li (Lee) / Aicent Stack, RTTP CRI 27 · IQA CRI 28
 
 
 ## Re-proposal note (2026-11-08)
