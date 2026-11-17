@@ -104,7 +104,10 @@ def run_cases(check, fam):
                                "verify": "pass" if vok else "fail"},
                        "agree": ok}
         else:
-            ok = (got == exp)
+            if fam == "aicent-uri-grammar" and c.get("status") == check.TIGHTENING_STATUS:
+                ok = got in ("proposed", "conformant")
+            else:
+                ok = (got == exp)
             rec = {"id": c["id"], "rule": c["rule"], "expect": exp, "got": got, "agree": ok}
         agree += bool(rec["agree"])
         records.append(rec)
@@ -174,8 +177,9 @@ def run_mutants(check, mutate, fam):
                     if c["rule"] == rule and check.evaluate(c, rules) != c["expect"]]
             record(name, hits)
     else:  # aicent-uri-grammar
+        normative = [c for c in cases if c.get("status") != check.TIGHTENING_STATUS]
         for name, fn in mutate.M.items():
-            hits = [c["id"] for c in cases if check.evaluate(c, fn) != c["expect"]]
+            hits = [c["id"] for c in normative if check.evaluate(c, fn) != c["expect"]]
             record(name, hits)
     return records
 

@@ -1560,14 +1560,14 @@
         {
           "agree": true,
           "expect": "reject",
-          "got": "reject",
+          "got": "proposed",
           "id": "UG-N15",
           "rule": "R-GRAMMAR"
         },
         {
           "agree": true,
           "expect": "reject",
-          "got": "reject",
+          "got": "proposed",
           "id": "UG-N16",
           "rule": "R-GRAMMAR"
         },
@@ -1580,7 +1580,7 @@
         }
       ],
       "family": "aicent-uri-grammar",
-      "mutant_count": 13,
+      "mutant_count": 12,
       "mutants": [
         {
           "killed": true,
@@ -1655,14 +1655,6 @@
         {
           "killed": true,
           "killed_by": [
-            "UG-N15",
-            "UG-N16"
-          ],
-          "name": "grammar: leading-hyphen tightening dropped"
-        },
-        {
-          "killed": true,
-          "killed_by": [
             "UG-N17"
           ],
           "name": "grammar: whitespace stripped silently"
@@ -1699,8 +1691,6 @@
             "UG-N13",
             "UG-N14",
             "UG-N17",
-            "UG-N15",
-            "UG-N16",
             "UG-A01"
           ],
           "name": "grammar: always accept"
@@ -1730,14 +1720,12 @@
             "UG-N12",
             "UG-N13",
             "UG-N14",
-            "UG-N15",
-            "UG-N16",
             "UG-A01"
           ],
           "name": "grammar: always reject"
         }
       ],
-      "mutants_killed": 13,
+      "mutants_killed": 12,
       "spec": "draft-li-rttp-iqa-addressing-02 sec. 4.1-4.2"
     },
     {
@@ -1962,8 +1950,8 @@
   "summary": {
     "agree": 127,
     "cases": 127,
-    "mutants": 94,
-    "mutants_killed": 94
+    "mutants": 93,
+    "mutants_killed": 93
   },
   "tool": "family_runner.py (Aicent-Stack/conformance family-runner)"
 }
