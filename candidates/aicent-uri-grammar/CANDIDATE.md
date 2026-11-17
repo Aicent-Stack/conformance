@@ -113,9 +113,9 @@ reviews are author-produced and are not runs.
 
 ## Recorded run and live report
 
-A recorded run of this family ships with this repository: [`family_runner.py`](https://github.com/Aicent-Stack/conformance/blob/590b26b/family-runner/family_runner.py) replays every case and the full mutation battery into a single deterministic output — no timestamps, no paths, byte-replayable. The run is author-produced and is presented as such. Recorded totals for this family: 24/24 normative cases agree, 2/2 proposed-tightening cases consistent, 12/12 mutants killed, exit 0.
+A recorded run of this family ships with this repository: [`family_runner.py`](https://github.com/Aicent-Stack/conformance/blob/3782d81/family-runner/family_runner.py) replays every case and the full mutation battery into a single deterministic output — no timestamps, no paths, byte-replayable. The run is author-produced and is presented as such. Recorded totals for this family: 24/24 normative cases agree, 2/2 proposed-tightening cases consistent, 12/12 mutants killed, exit 0.
 
-The full recorded-run report — per-case results, the mutation battery, run metadata, and the verbatim console output — lives on the family page at [iqa.org/conformance/aicent-uri-grammar/](https://iqa.org/conformance/aicent-uri-grammar/), sealed as a single-file site freeze ([aicent-uri-grammar-site-20261114a.tar.gz](https://iqa.org/seal/aicent-uri-grammar-site-20261114a.tar.gz)).
+The full recorded-run report — per-case results, the mutation battery, run metadata, and the verbatim console output — lives on the family page at [iqa.org/conformance/aicent-uri-grammar/](https://iqa.org/conformance/aicent-uri-grammar/), sealed as a single-file site freeze ([aicent-uri-grammar-site-20261117a.tar.gz](https://iqa.org/seal/aicent-uri-grammar-site-20261117a.tar.gz)).
 
 ## Known limitations
 
