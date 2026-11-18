@@ -99,7 +99,7 @@
   "recorded/phase1.json": "4ec54b036a9be76e72944623079c30c891cbdcc67bc90e220a68428c199d1a4a"
  },
  "runner": "replay-runner",
- "runner_path": "replay-runner/replay_runner.py",
+ "runner_path": "replay/replay-runner/replay_runner.py",
  "status": "replay_matched",
  "summary": {
   "part_divergences": 0,

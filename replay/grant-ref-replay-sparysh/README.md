@@ -6,7 +6,7 @@ The replay is our hub-card commitment fulfilled: once the record merged, we ran 
 
 ## What the replay does
 
-The generic thin wrapper [`replay-runner/replay_runner.py`](../replay-runner/replay_runner.py) reads `profile.json` in this directory and:
+The generic thin wrapper [`replay/replay-runner/replay_runner.py`](../replay-runner/replay_runner.py) reads `profile.json` in this directory and:
 
 1. verifies the seven vendor pins (the record's checker and comparison script as run, the pinned draft, the frozen blind copy, and the candidate's sealed vectors, description and id-map) — byte-exact against the digests the record itself publishes; any mismatch aborts before anything executes;
 2. executes the record's two commands exactly as the record's run report specifies (`check_reader.py` over the draft and blind copy, then `compare.py` over the produced phase-1 output, the sealed vectors and the id-map);
@@ -24,8 +24,8 @@ Exit 0, `status: replay_matched`. All 7 vendor pins and all 3 recorded pins veri
 From the repository root:
 
 ```
-python3 -I replay-runner/replay_runner.py grant-ref-replay-sparysh rerun-output.json
-cmp rerun-output.json grant-ref-replay-sparysh/run-output.json
+python3 -I replay/replay-runner/replay_runner.py replay/grant-ref-replay-sparysh rerun-output.json
+cmp rerun-output.json replay/grant-ref-replay-sparysh/run-output.json
 ```
 
 Expected output begins with `VENDOR PIN OK 7/7 (profile.json vendor_pins)` and ends with `REPLAY ok: sparysh-reading-aicent-grant-ref-20186f3 reproduced (pins 7, commands 2, outputs 3)`, exit status 0. The replay is deterministic: the machine-readable output carries no timestamps and no paths, and a rerun must reproduce the committed `run-output.json` byte for byte. The full console output of the recorded replay is preserved verbatim in `run-output.txt`.

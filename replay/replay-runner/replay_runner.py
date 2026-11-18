@@ -190,7 +190,7 @@ def main(argv):
     ok = commands_ok and outputs_ok and summary_ok
     payload = {
         "runner": "replay-runner",
-        "runner_path": "replay-runner/replay_runner.py",
+        "runner_path": "replay/replay-runner/replay_runner.py",
         "operator": profile["operator"],
         "mode": profile["mode"],
         "record": profile["record"],
