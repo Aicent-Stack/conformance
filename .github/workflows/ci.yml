@@ -107,6 +107,13 @@ jobs:
           cmp "$RUNNER_TEMP/icam.json" icam-runner/run-output.json
           python3 -c "import json; j=json.load(open('$RUNNER_TEMP/icam.json')); s=j['summary']; assert s=={'cases':24,'agree':24,'mutants':6,'mutants_killed':6}, s; print('icam runner ok: 24/24 agree, 6/6 killed')"
 
+      - name: Rerun the grant-ref replay wrapper; output must reproduce the recorded bytes
+        run: |
+          set -euo pipefail
+          python3 -I replay-runner/replay_runner.py grant-ref-replay-sparysh "$RUNNER_TEMP/replay.json"
+          cmp "$RUNNER_TEMP/replay.json" grant-ref-replay-sparysh/run-output.json
+          python3 -c "import json; j=json.load(open('$RUNNER_TEMP/replay.json')); assert j['status']=='replay_matched', j['status']; assert j['summary']['verdict_agreement']=='25/25' and j['summary']['part_divergences']==0, j['summary']; print('replay ok: merged record reproduced, verdict agreement', j['summary']['verdict_agreement'])"
+
       - name: Rerun the family runner over the six candidate families; output must reproduce the recorded bytes
         run: |
           set -euo pipefail
