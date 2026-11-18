@@ -14,7 +14,6 @@
    "produced": [
     {
      "byte_match_lf": true,
-     "byte_match_raw": false,
      "canonical_match": true,
      "produced": "recorded/phase1.json",
      "recorded_from": "{out}/phase1.json",
@@ -23,7 +22,6 @@
     },
     {
      "byte_match_lf": true,
-     "byte_match_raw": false,
      "canonical_match": true,
      "produced": "recorded/phase1-sensitivity.json",
      "recorded_from": "{out}/phase1-sensitivity.json",
@@ -47,7 +45,6 @@
    "produced": [
     {
      "byte_match_lf": true,
-     "byte_match_raw": false,
      "canonical_match": true,
      "produced": "recorded/final.json",
      "recorded_from": "{out}/final.json",

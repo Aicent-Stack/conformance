@@ -105,7 +105,16 @@ def compare_outputs(record_dir, cmd, out_dir, step):
             entry["sha256_produced_lf"] = prod_lf
             entry["byte_match_lf"] = prod_lf == rec_lf
             entry["canonical_match"] = canonical_sha256(produced) == canonical_sha256(recorded)
-            entry["byte_match_raw"] = sha256_bytes(prod_raw) == sha256_bytes(rec_raw)
+            # environment-dependent detail (raw byte equality vs line endings):
+            # reported on the console only, never stored in the JSON payload --
+            # the recorded bytes are pinned LF, so raw equality differs by OS
+            raw_match = sha256_bytes(prod_raw) == sha256_bytes(rec_raw)
+            print("OUTPUT %-28s lf=%s canonical=%s raw=%s (%s...)" % (
+                spec["recorded"],
+                "match" if entry["byte_match_lf"] else "MISMATCH",
+                "match" if entry["canonical_match"] else "MISMATCH",
+                "match" if raw_match else "eol-only-diff",
+                rec_lf[:16]))
             if not (entry["byte_match_lf"] and entry["canonical_match"]):
                 all_ok = False
         step["produced"].append(entry)
@@ -140,21 +149,14 @@ def main(argv):
         for cmd in profile["commands"]:
             step, proc = run_command(record_dir, cmd, out_dir)
             commands_ok &= (proc.returncode == 0 and step["stdout_match"])
-            if proc.returncode == 0 and step["stdout_match"]:
-                outputs_ok &= compare_outputs(record_dir, cmd, out_dir, step)
             steps.append(step)
             print("COMMAND %-8s exit=%d stdout=%s" % (
                 cmd["name"], proc.returncode, "match" if step["stdout_match"] else "MISMATCH"))
+            if proc.returncode == 0 and step["stdout_match"]:
+                outputs_ok &= compare_outputs(record_dir, cmd, out_dir, step)
             for entry in step["produced"]:
                 if "error" in entry:
                     print("OUTPUT %-28s %s" % (entry["produced"], entry["error"]))
-                else:
-                    print("OUTPUT %-28s lf=%s canonical=%s raw=%s (%s...)" % (
-                        entry["produced"],
-                        "match" if entry["byte_match_lf"] else "MISMATCH",
-                        "match" if entry["canonical_match"] else "MISMATCH",
-                        "match" if entry["byte_match_raw"] else "eol-only-diff",
-                        entry["sha256_recorded_lf"][:16]))
 
     # expected summary, checked against the recorded comparison output itself
     final_spec = None
