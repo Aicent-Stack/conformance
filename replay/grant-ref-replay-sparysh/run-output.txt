@@ -1,10 +1,10 @@
-$ D:\Python314\python.exe --version
+$ python --version
 Python 3.14.2
 [exit 0]
-$ D:\Python314\python.exe -c "import platform; print(platform.platform())"
+$ python -c "import platform; print(platform.platform())"
 Windows-11-10.0.26300-SP0
 [exit 0]
-$ D:\Python314\python.exe -I replay/replay-runner/replay_runner.py replay/grant-ref-replay-sparysh replay/grant-ref-replay-sparysh/run-output.json
+$ python -I replay/replay-runner/replay_runner.py replay/grant-ref-replay-sparysh replay/grant-ref-replay-sparysh/run-output.json
 VENDOR PIN OK 7/7 (profile.json vendor_pins)
 RECORDED PIN OK 3/3 (profile.json recorded_pins)
 COMMAND phase1   exit=0 stdout=match
