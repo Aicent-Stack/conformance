@@ -17,7 +17,7 @@ The wrapper adds no verdict logic of its own — the checker that supplies the v
 
 ## Result
 
-Exit 0, `status: replay_matched`. All 7 vendor pins and all 3 recorded pins verified; both commands exit 0 with stdout exactly as the record's run report transcribed it (`{"ambiguous": 2, "conformant": 11, "nonconformant": 12}`); all three produced outputs are byte-identical to the recorded artifacts after line-ending normalization (Windows CRLF during recording, LF on Linux) and canonically equal as JSON; the recorded comparison itself reproduces verdict agreement 25/25 and zero named-part divergences. The replay reproduces the record; it does not re-judge it — the value of the match is that the record's bytes are what the record says they are, executable by anyone offline.
+Exit 0, `status: replay_matched`. All 7 vendor pins and all 3 recorded pins verified; both commands exit 0 with stdout exactly as the record's run report transcribed it (`{"ambiguous": 2, "conformant": 11, "nonconformant": 12}`); all three produced outputs are byte-identical to the recorded artifacts after line-ending normalization (the record's Linux host wrote LF, the replay host on Windows wrote CRLF) and canonically equal as JSON; the recorded comparison itself reproduces verdict agreement 25/25 and zero named-part divergences. The replay reproduces the record; it does not re-judge it — the value of the match is that the record's bytes are what the record says they are, executable by anyone offline.
 
 ## Re-run
 
