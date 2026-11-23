@@ -114,6 +114,13 @@ jobs:
           cmp "$RUNNER_TEMP/replay.json" replay/grant-ref-replay-sparysh/run-output.json
           python3 -c "import json; j=json.load(open('$RUNNER_TEMP/replay.json')); assert j['status']=='replay_matched', j['status']; assert j['summary']['verdict_agreement']=='25/25' and j['summary']['part_divergences']==0, j['summary']; print('replay ok: merged record reproduced, verdict agreement', j['summary']['verdict_agreement'])"
 
+      - name: Rerun the lease-boundary replay wrapper; output must reproduce the recorded bytes
+        run: |
+          set -euo pipefail
+          python3 -I replay/replay-runner/replay_runner.py replay/lease-boundary-replay-sparysh "$RUNNER_TEMP/replay-lb.json"
+          cmp "$RUNNER_TEMP/replay-lb.json" replay/lease-boundary-replay-sparysh/run-output.json
+          python3 -c "import json; j=json.load(open('$RUNNER_TEMP/replay-lb.json')); assert j['status']=='replay_matched', j['status']; s=j['summary']; assert s=={'match':14,'diverge':1,'tally_final':{'ambiguous':2,'conformant':8,'nonconformant':5}}, s; print('lease-boundary replay ok: match', s['match'], ', diverge', s['diverge'])"
+
       - name: Rerun the family runner over the six candidate families; output must reproduce the recorded bytes
         run: |
           set -euo pipefail

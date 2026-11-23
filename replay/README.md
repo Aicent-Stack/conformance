@@ -20,3 +20,6 @@ offline — nothing more, and honestly nothing less.
 - [`grant-ref-replay-sparysh/`](grant-ref-replay-sparysh/) — pipeline replay of the merged
   `sparysh-reading-aicent-grant-ref-20186f3` lab record (Andrii Sparysh's outside
   reading of our `aicent-grant-ref` family, lab PR #234)
+- [`lease-boundary-replay-sparysh/`](lease-boundary-replay-sparysh/) — pipeline replay of the merged
+  `sparysh-reading-aicent-lease-boundary-0e0064b` lab record (Andrii Sparysh's outside
+  reading of our `aicent-lease-boundary` family, lab PR #238)

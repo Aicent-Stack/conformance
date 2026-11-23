@@ -167,11 +167,19 @@ def main(argv):
     summary = None
     if final_spec is not None:
         final = json.loads((record_dir / final_spec["recorded"]).read_text(encoding="utf-8"))
-        summary = {
-            "verdict_agreement": final.get("verdict_agreement"),
-            "part_divergences": len(final.get("part_divergences") or []),
-            "tally": final.get("tally"),
-        }
+        # default summary keys preserve the grant-ref schema (verdict_agreement /
+        # part_divergences counted as a list length / tally); a record whose
+        # comparison output uses a different schema (e.g. match / diverge /
+        # tally_final) names its keys in profile["summary_keys"].
+        keys = profile.get("summary_keys")
+        if keys is None:
+            summary = {
+                "verdict_agreement": final.get("verdict_agreement"),
+                "part_divergences": len(final.get("part_divergences") or []),
+                "tally": final.get("tally"),
+            }
+        else:
+            summary = {k: final.get(k) for k in keys}
     expected = profile.get("expected", {})
     summary_ok = True
     if summary is not None and expected:
