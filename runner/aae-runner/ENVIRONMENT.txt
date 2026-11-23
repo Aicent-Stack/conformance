@@ -1,0 +1,13 @@
+AAE conformance run — environment record
+==========================================
+record date (UTC): 2026-11-04
+operator: ShaoBao Li (Lee) / @Aicent-com / RTTP CRI 27 · IQA CRI 28
+mode: independent run (non-author-produced); operator is not affiliated with MoltyCel/MolTrust
+subject candidate: candidates/moltycel-aae-vectors (lab PR #190, merged 2026-10-26)
+source pin: MoltyCel/aae-conformance-vectors @ 6bb462f578c12d339b8fa964a5b1d8f97dbffa68 (64 files, byte-verified before run)
+host: Debian GNU/Linux 12 (bookworm), kernel 6.1.0-53-amd64, x86_64
+python: 3.11.2
+venv packages: cryptography 50.0.2 · jcs 0.2.1 · jsonschema 4.26.0 · jsonschema-specifications 2025.9.1 · pytest 9.2.0
+runner: candidate-native run.sh (clone-by-commit + CHECKSUMS byte gate + offline.py audit hook; network sockets refused)
+recorded output: run-output.txt (sha256 recorded in SHA256SUMS.txt)
+exit status: RUN-EXIT=0 (all suites green)
