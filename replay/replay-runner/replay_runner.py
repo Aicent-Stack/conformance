@@ -9,11 +9,12 @@ Operator: ShaoBao Li (Lee) / Aicent Stack (RTTP CRI 27 / IQA CRI 28).
 
 The wrapper executes the external record's own checker as code-as-run; it adds
 no verdict logic of its own. It fails closed: any vendor-pin mismatch, any
-stdout deviation, or any output mismatch aborts with a nonzero exit before the
-record can claim a match. A record directory is replayable when it carries a
-"profile.json" describing the commands, the vendor pins, the recorded outputs
-and the expected summary; nothing in this wrapper knows the family, the
-candidate, or the external operator.
+command path outside the vendor/recorded pin sets, any stdout deviation, or
+any output mismatch aborts with a nonzero exit before the record can claim a
+match. A record directory is replayable when it carries a "profile.json"
+describing the commands, the vendor pins, the recorded outputs and the
+expected summary; nothing in this wrapper knows the family, the candidate, or
+the external operator.
 
 Usage:
     python -I replay_runner.py <record-dir> [output.json]
@@ -62,6 +63,40 @@ def verify_pins(record_dir, pins, kind):
         if actual != expected:
             failures.append("%s pin mismatch: %s (expected %s..., got %s...)"
                             % (kind, rel, expected[:16], actual[:16]))
+    return failures
+
+
+def command_path_failures(record_dir, profile):
+    """Every path a command reads or executes inside the record directory, and
+    every recorded output it is compared against, must be covered by the pin
+    sets: pins that do not constrain execution are weaker pins. Unpinned or
+    escaping paths are collected here and rejected before anything executes."""
+    allowed = set(profile["vendor_pins"]) | set(profile["recorded_pins"])
+    failures = []
+    for cmd in profile["commands"]:
+        for spec in cmd.get("produces", []):
+            recorded = spec.get("recorded", "")
+            if "{out}" in recorded:
+                continue
+            rel = Path(recorded.replace("\\", "/"))
+            if rel.is_absolute() or ".." in rel.parts or rel.parts[:1] == ("~",):
+                failures.append("command %s: recorded path escapes record dir: %s"
+                                % (cmd["name"], recorded))
+            elif rel.as_posix() not in allowed:
+                failures.append("command %s: recorded output path not pinned: %s"
+                                % (cmd["name"], recorded))
+        for token in cmd["argv"]:
+            if "{out}" in token or token.startswith("-"):
+                continue
+            rel = Path(token.replace("\\", "/"))
+            if rel.is_absolute() or ".." in rel.parts or rel.parts[:1] == ("~",):
+                failures.append("command %s: path escapes record dir: %s"
+                                % (cmd["name"], token))
+                continue
+            rel = rel.as_posix()
+            if (Path(record_dir) / rel).exists() and rel not in allowed:
+                failures.append("command %s: path not pinned: %s"
+                                % (cmd["name"], token))
     return failures
 
 
@@ -140,6 +175,16 @@ def main(argv):
     print("VENDOR PIN OK %d/%d (profile.json vendor_pins)" % (len(pins), len(pins)))
     rec_pins = profile["recorded_pins"]
     print("RECORDED PIN OK %d/%d (profile.json recorded_pins)" % (len(rec_pins), len(rec_pins)))
+
+    path_failures = command_path_failures(record_dir, profile)
+    if path_failures:
+        for line in path_failures:
+            print("COMMAND PATH REJECT:", line)
+        print("REPLAY FAIL: %d unpinned command path(s); nothing was executed"
+              % len(path_failures))
+        return 1
+    print("COMMAND PATHS OK %d command(s), every argv and recorded path pinned"
+          % len(profile["commands"]))
 
     steps = []
     outputs_ok = True
