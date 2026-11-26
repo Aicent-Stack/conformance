@@ -1,4 +1,4 @@
-# 544 — feat(registry): register refusal-reason-priority, fix Pages
+# refusal-reason-priority-registration — venue PR #544: register refusal-reason-priority, fix Pages
 
 PR opened and merged by the venue ([probityai/agent-evidence-vectors#544](https://github.com/probityai/agent-evidence-vectors/pull/544),
 operator Gilda, @astrogilda): opened 2026-11-08T19:39:23Z, **merged 2026-11-10T20:32:28Z**,
@@ -17,6 +17,6 @@ What it did, in two commits:
    The RFC table points the `rttp-refusal` slot at this URI, and the corpus checker answers 33 of 33.
 
 Why this node matters to our line: the five-value closed refusal set that entered through our
-[#453](../453/) records and was filed by us as the emitter in [#492](../492/) is now a registered
+[#453](../refusal-vocabulary-filing/) records and was filed by us as the emitter in [#492](../predicate-registry-rfc/) is now a registered
 predicate type in the venue's registry, under its own URI, with the author confirmation recorded.
 No action was required from us; the venue made all venue-side changes upstream.

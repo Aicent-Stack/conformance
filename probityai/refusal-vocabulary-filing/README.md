@@ -1,4 +1,4 @@
-# 453 — five records from the two families under the Probity AI audit-record contract
+# refusal-vocabulary-filing — venue issue #453: five records from the two families under the Probity AI audit-record contract
 
 On 2026-11-04 17:13 UTC, following the venue's invitation on the WIMSE list (30 October), we filed
 [probityai/agent-evidence-vectors#453](https://github.com/probityai/agent-evidence-vectors/issues/453):
@@ -11,11 +11,11 @@ the venue's side, and the venue's changes to its own contract are made upstream 
 ## Timeline (UTC)
 
 - 2026-11-04 17:13 — issue filed: five records + crosswalk (verbatim text in [`ISSUE-RECORDS.md`](ISSUE-RECORDS.md)).
-- 2026-11-06 23:16 — the venue merges PR #469, adding `PS1b` — the case it matched to our Record 5 (see [`../469/`](../469/)).
-- 2026-11-07 00:43 — the venue opens PR #483, the refusal-reason-priority corpus built from these records, "Closes #453" (see [`../483/`](../483/)).
+- 2026-11-06 23:16 — the venue merges PR #469, adding `PS1b` — the case it matched to our Record 5 (see [`../principal-standing-rows/`](../principal-standing-rows/)).
+- 2026-11-07 00:43 — the venue opens PR #483, the refusal-reason-priority corpus built from these records, "Closes #453" (see [`../refusal-reason-priority-corpus/`](../refusal-reason-priority-corpus/)).
 - 2026-11-07 12:12 — the venue's response (astrogilda), verbatim in [`THREAD.md`](THREAD.md).
 - 2026-11-07 12:41 — our reply, verbatim in [`THREAD.md`](THREAD.md).
-- 2026-11-07 16:27 — our confirmation comment on #483: corpusDigest, provenance block and spec pin all match (see [`../483/`](../483/)).
+- 2026-11-07 16:27 — our confirmation comment on #483: corpusDigest, provenance block and spec pin all match (see [`../refusal-reason-priority-corpus/`](../refusal-reason-priority-corpus/)).
 - 2026-11-07 18:22 — PR #483 merged; issue closed as completed by the venue at 18:22:27Z.
 
 ## The venue's response, in substance
@@ -36,8 +36,8 @@ the venue's side, and the venue's changes to its own contract are made upstream 
 
 The manifest field described above has landed upstream: PR #483, the `vectors-refusal-reason-priority`
 corpus (33 members built from these records), merged 2026-11-07T18:22:25Z and digest-confirmed by our
-comment — see [`../483/`](../483/). The follow-up registry RFC and the suites roadmap are tracked in
-[`../492/`](../492/) and [`../494/`](../494/).
+comment — see [`../refusal-reason-priority-corpus/`](../refusal-reason-priority-corpus/). The follow-up registry RFC and the suites roadmap are tracked in
+[`../predicate-registry-rfc/`](../predicate-registry-rfc/) and [`../suites-roadmap/`](../suites-roadmap/).
 
 ## Provenance and links
 

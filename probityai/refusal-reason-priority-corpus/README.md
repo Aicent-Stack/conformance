@@ -1,7 +1,7 @@
-# 483 — the refusal-reason-priority corpus
+# refusal-reason-priority-corpus — venue PR #483: the refusal-reason-priority corpus
 
 PR by the venue ([probityai/agent-evidence-vectors#483](https://github.com/probityai/agent-evidence-vectors/pull/483)),
-opened 2026-11-07T00:43:21Z, **merged 2026-11-07T18:22:25Z**, filed as "Closes #453" — see [`../453/`](../453/).
+opened 2026-11-07T00:43:21Z, **merged 2026-11-07T18:22:25Z**, filed as "Closes #453" — see [`../refusal-vocabulary-filing/`](../refusal-vocabulary-filing/).
 
 What it does (venue's verbatim text in [`PR-RECORDS.md`](PR-RECORDS.md)): the `vectors-refusal-reason-priority`
 corpus, built from the records we filed on #453 and anchored to sections 6.1, 7.2, 8.1 and 8.2 of

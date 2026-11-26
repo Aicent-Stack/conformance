@@ -1,4 +1,4 @@
-# 585 — Registration candidate: predicate for the AE-128 attestation envelope
+# attestation-envelope-candidate — our issue #585: registration candidate for the predicate for the AE-128 attestation envelope
 
 Issue filed by us ([probityai/agent-evidence-vectors#585](https://github.com/probityai/agent-evidence-vectors/issues/585)),
 2026-11-13T14:50:24Z, **open** (see [`ISSUE-RECORDS.md`](ISSUE-RECORDS.md) for the verbatim archive).
@@ -23,6 +23,6 @@ HMAC key material stays with the verifier; corpus records would carry frame byte
 outcomes, not keys. Naming is the venue's call; `attestation-envelope` is offered as a suggestion.
 
 Same-day edit (2026-11-13T14:57:44Z): a Cross-references section was appended to the issue body —
-the verbatim archive of the issue at [`../585/`](./) plus the sealed family report. The archive below
+the verbatim archive of the issue at [`ISSUE-RECORDS.md`](ISSUE-RECORDS.md) plus the sealed family report. The archive below
 [`ISSUE-RECORDS.md`](ISSUE-RECORDS.md) was refreshed to the post-edit generation; the first-generation
 sha256 is recorded in its header.
