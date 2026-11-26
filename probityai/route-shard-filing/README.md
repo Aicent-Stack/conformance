@@ -1,8 +1,8 @@
-# route-shard-filing — the ROUTE_SHARD derivation family filing (prepared 2026-11-26, issue pending submission)
+# route-shard-filing — the ROUTE_SHARD derivation family filing (filed 2026-11-26 as issue #760)
 
 Companion to [`../lease-boundary-filing/`](../lease-boundary-filing/) in the same wave: the addressing side of the same draft — the ROUTE_SHARD derivation of the rttp scheme — filed as seven records over the sixteen cases, anchored to draft-li-rttp-iqa-addressing-03 (sha256 `73470850daae844c51f281d6acf6d74419bb1b8c762270f1c411469c78cbc52c`), sections 4.4, 4.2, 9.1 and the published vector of section 7.2.1. Every expected address is recomputable from the standard library's SHA-256 alone.
 
-Status: prepared and reviewed 2026-11-26; the body in [`ISSUE.md`](ISSUE.md) is filed verbatim, with the title recorded below; this node gains the issue number and the thread archive after submission.
+Status: filed 2026-11-26 15:11 UTC as [issue #760](https://github.com/probityai/agent-evidence-vectors/issues/760) by Aicent-com; the body in [`ISSUE.md`](ISSUE.md) was filed verbatim (byte-exact echo verified), titled as recorded below. This node gains the thread archive when the venue replies.
 
 ## Provenance and links
 

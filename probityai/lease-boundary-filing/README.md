@@ -1,8 +1,8 @@
-# lease-boundary-filing — the full lease-boundary family filing (prepared 2026-11-26, issue pending submission)
+# lease-boundary-filing — the full lease-boundary family filing (filed 2026-11-26 as issue #759)
 
 Wave 1 of extending the corpus filings: the lease family that contributed one record to [#453](https://github.com/probityai/agent-evidence-vectors/issues/453) (Record 5, LB-D01/D02) is filed here as a full case set — nine records over the fifteen cases — anchored to draft-li-rttp-iqa-addressing-03 (sha256 `73470850daae844c51f281d6acf6d74419bb1b8c762270f1c411469c78cbc52c`), sections 6.1, 6.2, 6.3 and the verification procedure of section 7.2. Companion filing: [`../route-shard-filing/`](../route-shard-filing/).
 
-Status: prepared and reviewed 2026-11-26; the body in [`ISSUE.md`](ISSUE.md) is filed verbatim, with the title recorded below; this node gains the issue number and the thread archive after submission.
+Status: filed 2026-11-26 15:11 UTC as [issue #759](https://github.com/probityai/agent-evidence-vectors/issues/759) by Aicent-com; the body in [`ISSUE.md`](ISSUE.md) was filed verbatim (byte-exact echo verified), titled as recorded below. This node gains the thread archive when the venue replies.
 
 ## Provenance and links
 
