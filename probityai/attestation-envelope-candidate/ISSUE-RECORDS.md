@@ -1,13 +1,15 @@
 <!--
-Archived from https://github.com/probityai/agent-evidence-vectors/issues/585 on 2026-11-14. First archived 2026-11-13
+Archived from https://github.com/probityai/agent-evidence-vectors/issues/585 on 2026-11-14, refreshed 2026-11-26. First archived 2026-11-13
 (sha256 of that generation: 72970bc7cf68fedea15989b303c44f5d56a8c6242bb8055119aa8c3f184654d8); the body was
 edited the same day at 14:57:44Z to append the Cross-references section (repository archive + sealed family
-report). The text below the marker is the issue body verbatim as it now stands, byte-exact as retrieved,
-LF-normalized for storage; sha256 of the archived text (the verbatim section as stored, below the marker): 14e0645b4a873a5de351d838faf2bbe9146b32dbb4dd9b50103df1cd16a705b9.-->
+report; second generation, sha256 of that generation: 14e0645b4a873a5de351d838faf2bbe9146b32dbb4dd9b50103df1cd16a705b9). The body was edited again on 2026-11-26
+to repoint its repository-archive cross-reference at the renamed folder
+(probityai/585/ -> probityai/attestation-envelope-candidate/, one line, no other change; third generation). The
+text below the marker is the issue body verbatim as it now stands, byte-exact as retrieved,
+LF-normalized for storage; sha256 of the archived text (the verbatim section as stored, below the marker): 7a4a447350fbbb0adbda900bc818ff8cc601797b4b11e27d563f4aae22f87adb.-->
 
-Issue #585 verbatim archive (post-edit generation) — sha256 of archived text: 14e0645b4a873a5de351d838faf2bbe9146b32dbb4dd9b50103df1cd16a705b9
+Issue #585 verbatim archive (third generation) — sha256 of archived text: 7a4a447350fbbb0adbda900bc818ff8cc601797b4b11e27d563f4aae22f87adb
 ================================================================
-
 Following #544 and the `predicate/v1/refusal-reason-priority` entry: that entry works because the normative set and its order stay in the draft, owned and confirmed by its author, while this repository carries the corpus, the rails, and the page. The same draft fixes a second normative object that is evidence-shaped in exactly the same way, and it is the object those refusal answers are answers **over**: the fixed 128-octet attestation envelope of Section 7.2.
 
 Before drafting anything concrete: does a registration of that object fit the registry's scope — a corpus plus rails in this repository, with the byte layout and the closed verdict set normative in the draft and not vendored here? If it fits, the notes below are what I can supply. If it does not, a one-line no is a complete answer and the subject is closed.
@@ -54,5 +56,5 @@ No vendoring is required either way: the layout and the closed set stay normativ
 
 ## Cross-references
 
-- Verbatim archive of this issue, kept by the emitter: <https://github.com/Aicent-Stack/conformance/tree/main/probityai/585/>
+- Verbatim archive of this issue, kept by the emitter: <https://github.com/Aicent-Stack/conformance/tree/main/probityai/attestation-envelope-candidate/>
 - The AE-128 family's sealed live report: <https://iqa.org/conformance/aicent-ae128-fail-closed/>
